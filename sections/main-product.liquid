@@ -1,0 +1,139 @@
+{% comment %}
+  Main Product Section OS 2.0
+{% endcomment %}
+
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+
+<section class="main-product py-12 md:py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+      <!-- Media Gallery (Col 6) -->
+      <div class="lg:col-span-6 space-y-4">
+        <div class="main-media relative rounded-3xl overflow-hidden bg-[#FFF8FA] border border-[#F3E2E8] aspect-square flex items-center justify-center p-6 shadow-sm">
+          {%- if product.featured_media -%}
+            <img
+              src="{{ product.featured_media | image_url: width: 800 }}"
+              alt="{{ product.title | escape }}"
+              class="w-full h-full object-contain"
+              id="MainProductImage"
+              width="600"
+              height="600"
+              loading="eager"
+            >
+          {%- else -%}
+            <div class="text-7xl">✨</div>
+          {%- endif -%}
+        </div>
+
+        {%- if product.media.size > 1 -%}
+          <div class="flex gap-3 overflow-x-auto no-scrollbar pb-2">
+            {%- for media in product.media -%}
+              <button
+                type="button"
+                class="w-20 h-20 rounded-2xl border-2 border-[#F7D5DF] hover:border-[#E86B91] p-1 bg-[#FFF8FA] overflow-hidden flex-shrink-0 transition-colors focus:outline-none"
+                onclick="document.getElementById('MainProductImage').src='{{ media | image_url: width: 800 }}'"
+              >
+                <img src="{{ media | image_url: width: 160 }}" alt="{{ media.alt | default: product.title }}" class="w-full h-full object-contain">
+              </button>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+
+      <!-- Product Form & Details (Col 6) -->
+      <div class="lg:col-span-6 space-y-6">
+        <!-- Rating & Sales tag -->
+        <div class="flex items-center gap-3">
+          <div class="flex text-[#FFB800]">
+            {%- for i in (1..5) -%}{% render 'icon-star' %}{%- endfor -%}
+          </div>
+          <span class="text-xs font-semibold text-gray-500">(1,248 Reseñas Verificadas)</span>
+          <span class="bg-[#FFF0F4] text-[#E86B91] text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase">⭐ Más Vendido</span>
+        </div>
+
+        <!-- Title -->
+        <h1 class="font-heading text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">
+          {{ product.title }}
+        </h1>
+
+        <!-- Price -->
+        <div class="pt-1">
+          {% render 'price', product: product, price_class: 'text-2xl font-black text-gray-900' %}
+        </div>
+
+        <!-- Short description -->
+        <div class="text-xs sm:text-sm text-gray-600 leading-relaxed border-y border-gray-100 py-4">
+          {{ product.description }}
+        </div>
+
+        <!-- Product Form -->
+        {% form 'product', product, id: 'MainProductForm', class: 'space-y-6' %}
+          <input type="hidden" name="id" value="{{ current_variant.id }}">
+
+          <!-- Variant selector if multiple -->
+          {%- unless product.has_only_default_variant -%}
+            <div class="space-y-2">
+              <label class="text-xs font-bold text-gray-800 uppercase tracking-wider">Opciones:</label>
+              <div class="flex flex-wrap gap-2">
+                {%- for variant in product.variants -%}
+                  <button
+                    type="button"
+                    class="px-4 py-2.5 rounded-xl border text-xs font-bold transition-all {% if variant == current_variant %}border-[#E86B91] bg-[#FFF0F4] text-[#E86B91]{% else %}border-gray-200 text-gray-700 hover:border-gray-400{% endif %}"
+                    onclick="document.querySelector('#MainProductForm input[name=id]').value='{{ variant.id }}'; this.parentElement.querySelectorAll('button').forEach(b => b.className='px-4 py-2.5 rounded-xl border text-xs font-bold transition-all border-gray-200 text-gray-700'); this.className='px-4 py-2.5 rounded-xl border text-xs font-bold transition-all border-[#E86B91] bg-[#FFF0F4] text-[#E86B91]';"
+                  >
+                    {{ variant.title }}
+                  </button>
+                {%- endfor -%}
+              </div>
+            </div>
+          {%- endunless -%}
+
+          <!-- Add to cart CTA -->
+          <div class="space-y-3 pt-2">
+            {%- if current_variant.available -%}
+              <button
+                type="button"
+                class="js-quick-add-btn w-full btn-primary py-4 px-8 text-sm font-bold uppercase tracking-wider bg-[#111111] hover:bg-[#333333] text-white rounded-full shadow-xl flex items-center justify-center gap-2"
+                data-variant-id="{{ current_variant.id }}"
+              >
+                {% render 'icon-cart' %}
+                <span>{{ 'sections.product.add_to_cart' | t | default: 'Agregar al Carrito' }}</span>
+              </button>
+            {%- else -%}
+              <button type="button" class="w-full bg-gray-300 text-gray-500 py-4 px-8 text-sm font-bold uppercase tracking-wider rounded-full cursor-not-allowed" disabled>
+                {{ 'sections.product.sold_out' | t | default: 'Agotado' }}
+              </button>
+            {%- endif -%}
+          </div>
+        {% endform %}
+
+        <!-- Trust Mini Badges -->
+        <div class="grid grid-cols-2 gap-3 pt-4 border-t border-gray-100 text-[11px] font-semibold text-gray-700">
+          <div class="flex items-center gap-2">
+            {% render 'icon-truck', class: 'text-[#E86B91]' %}
+            <span>Envío Gratis a todo el país</span>
+          </div>
+          <div class="flex items-center gap-2">
+            {% render 'icon-shield', class: 'text-[#E86B91]' %}
+            <span>Garantía de 90 Días</span>
+          </div>
+          <div class="flex items-center gap-2">
+            {% render 'icon-support', class: 'text-[#E86B91]' %}
+            <span>Asesoría 24/7 por WhatsApp</span>
+          </div>
+          <div class="flex items-center gap-2">
+            {% render 'icon-lock', class: 'text-[#E86B91]' %}
+            <span>Pago 100% Encriptado SSL</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Main Product Page",
+  "settings": []
+}
+{% endschema %}

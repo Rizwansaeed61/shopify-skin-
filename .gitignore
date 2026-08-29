@@ -1,0 +1,11 @@
+# Standard Shopify Theme .gitignore
+.DS_Store
+Thumbs.db
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.shopify/
+config/settings_data.json.bak
+*.bak
+*.tmp

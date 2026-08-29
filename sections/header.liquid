@@ -1,0 +1,142 @@
+{% comment %}
+  Header Section
+{% endcomment %}
+
+<header class="site-header bg-white/95 backdrop-blur-md border-b border-[#F3E2E8] transition-all duration-300">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+    <!-- Mobile Hamburger Toggle -->
+    <div class="flex items-center lg:hidden">
+      <button type="button" class="p-2 text-gray-800 hover:text-[#E86B91] transition-colors focus:outline-none" data-mobile-menu-toggle aria-label="Abrir menú">
+        {% render 'icon-menu' %}
+      </button>
+    </div>
+
+    <!-- Desktop Navigation Links (Left) -->
+    <nav class="hidden lg:flex items-center gap-8 text-xs font-bold uppercase tracking-wider text-gray-800">
+      {%- for link in section.settings.menu.links -%}
+        <a href="{{ link.url }}" class="hover:text-[#E86B91] transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[#E86B91] hover:after:w-full after:transition-all">
+          {{ link.title }}
+        </a>
+      {%- else -%}
+        <a href="/" class="hover:text-[#E86B91] transition-colors">Inicio</a>
+        <a href="/collections/all" class="hover:text-[#E86B91] transition-colors">Productos</a>
+        <a href="#como-funciona" class="hover:text-[#E86B91] transition-colors">¿Cómo Funciona?</a>
+        <a href="#testimoniales" class="hover:text-[#E86B91] transition-colors">Testimoniales</a>
+        <a href="/pages/contacto" class="hover:text-[#E86B91] transition-colors">Contacto</a>
+      {%- endfor -%}
+    </nav>
+
+    <!-- Brand Logo (Center) -->
+    <div class="flex-1 lg:flex-none text-center">
+      <a href="/" class="inline-block focus:outline-none">
+        {%- if section.settings.logo != blank -%}
+          <img
+            src="{{ section.settings.logo | image_url: width: 300 }}"
+            alt="{{ shop.name | escape }}"
+            class="h-8 md:h-10 w-auto object-contain mx-auto"
+            width="{{ section.settings.logo_width | default: 160 }}"
+            height="40"
+          >
+        {%- else -%}
+          <span class="font-heading text-2xl md:text-3xl font-extrabold tracking-tight text-gray-900 uppercase">
+            {{ section.settings.brand_text | default: 'SHINNY SKIN' }}
+          </span>
+        {%- endif -%}
+      </a>
+    </div>
+
+    <!-- Actions (Right) -->
+    <div class="flex items-center gap-4">
+      <!-- Search Button -->
+      <button type="button" class="p-2 text-gray-800 hover:text-[#E86B91] transition-colors" data-search-trigger aria-label="Buscar">
+        {% render 'icon-search' %}
+      </button>
+
+      <!-- Cart Button -->
+      <button
+        type="button"
+        class="relative p-2 text-gray-800 hover:text-[#E86B91] transition-colors flex items-center"
+        data-cart-drawer-trigger
+        aria-label="Ver carrito"
+      >
+        {% render 'icon-cart' %}
+        <span
+          id="HeaderCartCount"
+          class="absolute -top-1 -right-1 bg-[#E86B91] text-white text-[10px] font-extrabold w-5 h-5 rounded-full flex items-center justify-center shadow-md {% if cart.item_count == 0 %}hidden{% endif %}"
+        >
+          {{ cart.item_count }}
+        </span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu Drawer Overlay -->
+  <div id="MobileMenuDrawer" class="hidden fixed inset-0 z-50 bg-black/50 backdrop-blur-sm">
+    <div class="fixed inset-y-0 left-0 max-w-xs w-full bg-white shadow-2xl p-6 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between pb-4 border-b border-gray-100 mb-6">
+          <span class="font-heading text-xl font-bold tracking-tight text-gray-900 uppercase">
+            {{ section.settings.brand_text | default: 'SHINNY SKIN' }}
+          </span>
+          <button type="button" class="p-2 text-gray-500 hover:text-gray-900" data-mobile-menu-close aria-label="Cerrar menú">
+            {% render 'icon-close' %}
+          </button>
+        </div>
+
+        <nav class="space-y-4 text-sm font-bold uppercase tracking-wider text-gray-800">
+          {%- for link in section.settings.menu.links -%}
+            <a href="{{ link.url }}" class="block py-2 hover:text-[#E86B91] transition-colors">
+              {{ link.title }}
+            </a>
+          {%- else -%}
+            <a href="/" class="block py-2 hover:text-[#E86B91] transition-colors">Inicio</a>
+            <a href="/collections/all" class="block py-2 hover:text-[#E86B91] transition-colors">Productos</a>
+            <a href="#como-funciona" class="block py-2 hover:text-[#E86B91] transition-colors">¿Cómo Funciona?</a>
+            <a href="#testimoniales" class="block py-2 hover:text-[#E86B91] transition-colors">Testimoniales</a>
+            <a href="/pages/contacto" class="block py-2 hover:text-[#E86B91] transition-colors">Contacto</a>
+          {%- endfor -%}
+        </nav>
+      </div>
+
+      <div class="pt-6 border-t border-gray-100 space-y-4">
+        {% render 'social-icons', class: 'justify-start' %}
+        <p class="text-xs text-gray-500">© {{ 'now' | date: '%Y' }} {{ shop.name }}.</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo Image"
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "min": 100,
+      "max": 250,
+      "step": 10,
+      "unit": "px",
+      "label": "Logo Width",
+      "default": 160
+    },
+    {
+      "type": "text",
+      "id": "brand_text",
+      "label": "Brand Logo Text (if no image)",
+      "default": "SHINNY SKIN"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Navigation Menu",
+      "default": "main-menu"
+    }
+  ]
+}
+{% endschema %}

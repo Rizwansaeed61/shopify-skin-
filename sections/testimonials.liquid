@@ -1,0 +1,215 @@
+{% comment %}
+  Testimonials UGC Customer Reviews Carousel Section
+{% endcomment %}
+
+<section id="testimoniales" class="testimonials py-16 md:py-24 bg-[#FFF7F9]" data-carousel-container>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Header with Nav Arrows -->
+    <div class="flex items-end justify-between mb-10">
+      <div>
+        <span class="section-tag">{{ section.settings.tag | default: 'CLIENTES FELICES' }}</span>
+        <h2 class="font-heading text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight mt-2">
+          {{ section.settings.heading | default: 'Testimoniales' }}
+        </h2>
+        <p class="text-xs sm:text-sm text-gray-600 mt-2">
+          Más de 50,000+ resultados reales respaldados por nuestras clientas.
+        </p>
+      </div>
+
+      <!-- Arrow Controls -->
+      <div class="flex items-center gap-2">
+        <button
+          type="button"
+          class="w-10 h-10 rounded-full bg-white border border-[#F3E2E8] hover:border-[#E86B91] hover:text-[#E86B91] text-gray-700 flex items-center justify-center shadow-sm transition-all focus:outline-none"
+          data-carousel-prev
+          aria-label="Anterior"
+        >
+          {% render 'icon-arrow-left' %}
+        </button>
+        <button
+          type="button"
+          class="w-10 h-10 rounded-full bg-white border border-[#F3E2E8] hover:border-[#E86B91] hover:text-[#E86B91] text-gray-700 flex items-center justify-center shadow-sm transition-all focus:outline-none"
+          data-carousel-next
+          aria-label="Siguiente"
+        >
+          {% render 'icon-arrow-right' %}
+        </button>
+      </div>
+    </div>
+
+    <!-- Testimonials Track / Grid -->
+    <div
+      class="flex gap-6 overflow-x-auto no-scrollbar pb-6 scroll-smooth"
+      data-carousel-track
+    >
+      {%- for block in section.blocks -%}
+        <div class="w-72 sm:w-80 flex-shrink-0 bg-white rounded-3xl overflow-hidden border border-[#F3E2E8] card-shadow-hover flex flex-col" {{ block.shopify_attributes }}>
+          <!-- Customer Photo (Aspect Square/4:3) -->
+          <div class="relative w-full aspect-[4/3] bg-[#FFF0F4] overflow-hidden">
+            {%- if block.settings.image != blank -%}
+              <img
+                src="{{ block.settings.image | image_url: width: 500 }}"
+                alt="{{ block.settings.author }}"
+                class="w-full h-full object-cover"
+                width="320"
+                height="240"
+                loading="lazy"
+              >
+            {%- else -%}
+              <div class="w-full h-full flex flex-col items-center justify-center bg-gradient-to-tr from-[#FCEAEF] to-[#F8C8D8] text-4xl">
+                📸
+                <span class="text-xs font-bold text-gray-600 mt-2">Foto de Clienta</span>
+              </div>
+            {%- endif -%}
+          </div>
+
+          <!-- Content -->
+          <div class="p-5 flex-1 flex flex-col justify-between space-y-3">
+            <div class="space-y-2">
+              <!-- Star Rating -->
+              <div class="flex text-[#FFB800]">
+                {%- for i in (1..5) -%}
+                  {% render 'icon-star' %}
+                {%- endfor -%}
+              </div>
+
+              <!-- Author & Verified Badge -->
+              <div class="flex items-center gap-1.5">
+                <h4 class="text-sm font-bold text-gray-900">{{ block.settings.author }}</h4>
+                <span class="inline-flex items-center text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">
+                  ✓ Verificada
+                </span>
+              </div>
+
+              <!-- Review Text -->
+              <p class="text-xs text-gray-600 leading-relaxed italic">
+                "{{ block.settings.text }}"
+              </p>
+            </div>
+          </div>
+        </div>
+      {%- else -%}
+        <!-- Default Demo Testimonial Cards -->
+        <div class="w-72 sm:w-80 flex-shrink-0 bg-white rounded-3xl overflow-hidden border border-[#F3E2E8] card-shadow-hover flex flex-col">
+          <div class="w-full aspect-[4/3] bg-[#FCEAEF] flex items-center justify-center text-4xl">
+            ✨
+          </div>
+          <div class="p-5 space-y-2">
+            <div class="flex text-[#FFB800]">
+              {%- for i in (1..5) -%}{% render 'icon-star' %}{%- endfor -%}
+            </div>
+            <div class="flex items-center gap-1.5">
+              <h4 class="text-sm font-bold text-gray-900">Gloria T.</h4>
+              <span class="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">✓ Verificada</span>
+            </div>
+            <p class="text-xs text-gray-600 italic">"¡Increíble! En 4 semanas ya noté que el vello crecía súper lento y delgado. Cero dolor y súper fácil de usar."</p>
+          </div>
+        </div>
+
+        <div class="w-72 sm:w-80 flex-shrink-0 bg-white rounded-3xl overflow-hidden border border-[#F3E2E8] card-shadow-hover flex flex-col">
+          <div class="w-full aspect-[4/3] bg-[#FCEAEF] flex items-center justify-center text-4xl">
+            🌸
+          </div>
+          <div class="p-5 space-y-2">
+            <div class="flex text-[#FFB800]">
+              {%- for i in (1..5) -%}{% render 'icon-star' %}{%- endfor -%}
+            </div>
+            <div class="flex items-center gap-1.5">
+              <h4 class="text-sm font-bold text-gray-900">Andrea M.</h4>
+              <span class="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">✓ Verificada</span>
+            </div>
+            <p class="text-xs text-gray-600 italic">"No duele nada en comparación con la cera. Súper recomendada especialmente para axilas y piernas."</p>
+          </div>
+        </div>
+
+        <div class="w-72 sm:w-80 flex-shrink-0 bg-white rounded-3xl overflow-hidden border border-[#F3E2E8] card-shadow-hover flex flex-col">
+          <div class="w-full aspect-[4/3] bg-[#FCEAEF] flex items-center justify-center text-4xl">
+            💖
+          </div>
+          <div class="p-5 space-y-2">
+            <div class="flex text-[#FFB800]">
+              {%- for i in (1..5) -%}{% render 'icon-star' %}{%- endfor -%}
+            </div>
+            <div class="flex items-center gap-1.5">
+              <h4 class="text-sm font-bold text-gray-900">Diana R.</h4>
+              <span class="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">✓ Verificada</span>
+            </div>
+            <p class="text-xs text-gray-600 italic">"El mejor dinero invertido en mi cuidado personal. Piel suave sin foliculitis ni vellos enterrados."</p>
+          </div>
+        </div>
+
+        <div class="w-72 sm:w-80 flex-shrink-0 bg-white rounded-3xl overflow-hidden border border-[#F3E2E8] card-shadow-hover flex flex-col">
+          <div class="w-full aspect-[4/3] bg-[#FCEAEF] flex items-center justify-center text-4xl">
+            ⭐
+          </div>
+          <div class="p-5 space-y-2">
+            <div class="flex text-[#FFB800]">
+              {%- for i in (1..5) -%}{% render 'icon-star' %}{%- endfor -%}
+            </div>
+            <div class="flex items-center gap-1.5">
+              <h4 class="text-sm font-bold text-gray-900">Camila V.</h4>
+              <span class="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">✓ Verificada</span>
+            </div>
+            <p class="text-xs text-gray-600 italic">"Práctica, bonita y los resultados son reales. El servicio al cliente por WhatsApp también es de 10."</p>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Customer Testimonials",
+  "settings": [
+    {
+      "type": "text",
+      "id": "tag",
+      "label": "Section Tag",
+      "default": "CLIENTES FELICES"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Testimoniales"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Review Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Customer / Product Photo"
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Customer Name",
+          "default": "Gloria T."
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Review Quote",
+          "default": "¡Increíble! En 4 semanas ya noté que el vello crecía súper lento y delgado."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Customer Testimonials",
+      "blocks": [
+        { "type": "testimonial", "settings": { "author": "Gloria T.", "text": "¡Increíble! En 4 semanas ya noté que el vello crecía súper lento y delgado." } },
+        { "type": "testimonial", "settings": { "author": "Andrea M.", "text": "No duele nada en comparación con la cera. Súper recomendada." } },
+        { "type": "testimonial", "settings": { "author": "Diana R.", "text": "El mejor dinero invertido en mi cuidado personal. Piel suave sin foliculitis." } },
+        { "type": "testimonial", "settings": { "author": "Camila V.", "text": "Práctica, bonita y los resultados son 100% reales." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,30 @@
+{
+  "current": {
+    "color_primary": "#111111",
+    "color_primary_hover": "#333333",
+    "color_brand_pink": "#F7D5DF",
+    "color_brand_pink_dark": "#E86B91",
+    "color_background": "#FFFFFF",
+    "color_background_soft": "#FFF7F9",
+    "color_text": "#1A1A1A",
+    "color_text_muted": "#666666",
+    "color_border": "#F0DFE5",
+    "color_star": "#FFB800",
+    "color_badge_sale": "#E86B91",
+    "cart_type": "drawer",
+    "show_free_shipping_bar": true,
+    "free_shipping_threshold": 50,
+    "free_shipping_text_progress": "¡Agrega [amount] más para obtener ENVÍO GRATIS!",
+    "free_shipping_text_unlocked": "🎉 ¡Felicidades! Tienes ENVÍO GRATIS asegurado",
+    "enable_whatsapp": true,
+    "whatsapp_number": "5215555555555",
+    "whatsapp_default_message": "¡Hola ShinnySkin! Me gustaría recibir información sobre la Depiladora IPL Pro.",
+    "enable_floating_discount": true,
+    "floating_discount_text": "10% OFF",
+    "floating_discount_code": "SHINNY10",
+    "social_instagram_link": "https://instagram.com/myshinnyskin",
+    "social_tiktok_link": "https://tiktok.com/@myshinnyskin",
+    "social_facebook_link": "https://facebook.com/shinnyskin",
+    "social_youtube_link": "https://youtube.com/"
+  }
+}

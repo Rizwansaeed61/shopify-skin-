@@ -1,0 +1,16 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-collection",
+      "settings": {}
+    },
+    "value_props": {
+      "type": "value-props",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main",
+    "value_props"
+  ]
+}

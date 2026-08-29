@@ -1,0 +1,63 @@
+{
+  "general": {
+    "search": {
+      "placeholder": "Search our store...",
+      "submit": "Search",
+      "heading": "Search results",
+      "no_results": "No results found for \"{{ terms }}\""
+    },
+    "newsletter": {
+      "heading": "Subscribe and get exclusive offers",
+      "subtext": "By subscribing you agree to receive news and exclusive offers from ShinnySkin. You can unsubscribe at any time.",
+      "placeholder": "Enter your email address",
+      "submit": "Subscribe",
+      "success": "Thank you for subscribing! Check your inbox.",
+      "error": "Please enter a valid email address."
+    },
+    "reviews": {
+      "rating": "Rating",
+      "verified_buyer": "Verified Buyer",
+      "see_all": "See all reviews"
+    }
+  },
+  "sections": {
+    "header": {
+      "menu": "Menu",
+      "cart": "Cart",
+      "search": "Search",
+      "account": "My Account"
+    },
+    "cart": {
+      "title": "Your Cart",
+      "empty": "Your cart is currently empty",
+      "continue_shopping": "Continue shopping",
+      "checkout": "Secure Checkout",
+      "subtotal": "Subtotal",
+      "taxes_and_shipping_policy_at_checkout_html": "Taxes and shipping calculated at checkout",
+      "quantity": "Quantity",
+      "remove": "Remove",
+      "free_shipping": "Free Shipping",
+      "secure_checkout": "100% Encrypted & Secure Checkout"
+    },
+    "featured_collection": {
+      "quick_add": "Add to Cart",
+      "sold_out": "Sold Out",
+      "on_sale": "Sale",
+      "view_all": "View all products"
+    },
+    "product": {
+      "add_to_cart": "Add to Cart",
+      "buy_now": "Buy Now",
+      "sold_out": "Sold Out",
+      "quantity": "Quantity",
+      "description": "Description",
+      "shipping_guarantee": "90-Day Money Back Guarantee",
+      "free_shipping": "Free Nationwide Shipping"
+    },
+    "404": {
+      "title": "Page not found",
+      "subtext": "Sorry, the page you are looking for does not exist or has been moved.",
+      "link": "Back to Home"
+    }
+  }
+}

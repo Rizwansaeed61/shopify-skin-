@@ -1,0 +1,146 @@
+{% comment %}
+  Slide-out Ajax Cart Drawer
+{% endcomment %}
+
+<div id="CartDrawer" class="cart-drawer fixed inset-0 z-50 overflow-hidden pointer-events-none transition-opacity duration-300 opacity-0 invisible" aria-hidden="true">
+  <!-- Backdrop -->
+  <div class="cart-drawer__backdrop absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity" data-drawer-close></div>
+
+  <!-- Drawer Content -->
+  <div class="cart-drawer__panel absolute inset-y-0 right-0 max-w-md w-full bg-white shadow-2xl flex flex-col transform translate-x-full transition-transform duration-300 pointer-events-auto">
+    <!-- Header -->
+    <div class="cart-drawer__header p-5 border-b border-gray-100 flex items-center justify-between bg-[#FFF7F9]">
+      <div class="flex items-center gap-2">
+        {% render 'icon-cart' %}
+        <h2 class="text-lg font-bold text-gray-900">
+          {{ 'sections.cart.title' | t | default: 'Tu Carrito' }}
+        </h2>
+        <span id="CartDrawerItemCount" class="bg-[#E86B91] text-white text-xs font-bold px-2 py-0.5 rounded-full">
+          {{ cart.item_count }}
+        </span>
+      </div>
+      <button type="button" class="p-2 text-gray-400 hover:text-gray-700 rounded-full hover:bg-white/80 transition-colors" data-drawer-close aria-label="Cerrar carrito">
+        {% render 'icon-close' %}
+      </button>
+    </div>
+
+    <!-- Free Shipping Progress Bar -->
+    {%- if settings.show_free_shipping_bar -%}
+      {%- assign threshold_cents = settings.free_shipping_threshold | times: 100 -%}
+      <div class="cart-drawer__shipping-bar px-5 py-3.5 bg-[#FFF0F4] border-b border-[#F7D5DF]">
+        <div id="ShippingBarText" class="text-xs font-semibold text-[#1A1A1A] mb-2 flex items-center gap-1.5">
+          {% render 'icon-truck', class: 'text-[#E86B91]' %}
+          <span class="js-shipping-message">
+            {%- if cart.total_price >= threshold_cents -%}
+              {{ settings.free_shipping_text_unlocked }}
+            {%- else -%}
+              {%- assign remaining = threshold_cents | minus: cart.total_price -%}
+              {{ settings.free_shipping_text_progress | replace: '[amount]', remaining | money }}
+            {%- endif -%}
+          </span>
+        </div>
+        <div class="w-full bg-white rounded-full h-2 overflow-hidden shadow-inner">
+          {%- assign progress = cart.total_price | times: 100.0 | divided_by: threshold_cents | at_most: 100 -%}
+          <div id="ShippingProgressBar" class="bg-gradient-to-r from-[#F7D5DF] to-[#E86B91] h-2 rounded-full transition-all duration-500" style="width: {{ progress }}%;"></div>
+        </div>
+      </div>
+    {%- endif -%}
+
+    <!-- Cart Items Area -->
+    <div id="CartDrawerItems" class="cart-drawer__items flex-1 overflow-y-auto p-5 space-y-4">
+      {%- if cart.item_count == 0 -%}
+        <div class="cart-drawer__empty text-center py-16 px-4">
+          <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-[#FFF0F4] flex items-center justify-center text-[#E86B91]">
+            {% render 'icon-cart' %}
+          </div>
+          <p class="text-base font-semibold text-gray-800 mb-2">
+            {{ 'sections.cart.empty' | t | default: 'Tu carrito está vacío' }}
+          </p>
+          <p class="text-xs text-gray-500 mb-6">Descubre nuestra línea de cuidado facial y depilación permanente.</p>
+          <button type="button" class="btn-primary inline-flex items-center justify-center px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider bg-[#111111] text-white hover:bg-[#333333] transition-colors" data-drawer-close>
+            {{ 'sections.cart.continue_shopping' | t | default: 'Explorar Productos' }}
+          </button>
+        </div>
+      {%- else -%}
+        {%- for item in cart.items -%}
+          <div class="cart-drawer__item flex gap-4 pb-4 border-b border-gray-100 last:border-0" data-line-item-key="{{ item.key }}">
+            <!-- Image -->
+            <div class="w-20 h-20 rounded-xl bg-[#FFF8FA] border border-[#F3E2E8] flex-shrink-0 overflow-hidden">
+              {%- if item.image -%}
+                <img src="{{ item.image | image_url: width: 160 }}" alt="{{ item.title | escape }}" class="w-full h-full object-contain p-1" width="80" height="80">
+              {%- endif -%}
+            </div>
+
+            <!-- Details -->
+            <div class="flex-1 flex flex-col justify-between">
+              <div>
+                <div class="flex items-start justify-between gap-2">
+                  <h4 class="text-xs font-bold text-gray-900 line-clamp-2 hover:text-[#E86B91]">
+                    <a href="{{ item.url }}">{{ item.product.title }}</a>
+                  </h4>
+                  <button type="button" class="js-cart-remove text-gray-400 hover:text-red-500 transition-colors p-1" data-key="{{ item.key }}" aria-label="Eliminar">
+                    {% render 'icon-close' %}
+                  </button>
+                </div>
+                {%- unless item.product.has_only_default_variant -%}
+                  <p class="text-[11px] text-gray-500 mt-0.5">{{ item.variant.title }}</p>
+                {%- endunless -%}
+              </div>
+
+              <div class="flex items-center justify-between mt-3">
+                <!-- Quantity selector -->
+                <div class="flex items-center border border-gray-200 rounded-lg bg-gray-50 overflow-hidden">
+                  <button type="button" class="js-cart-qty-btn px-2.5 py-1 text-gray-600 hover:bg-gray-200 transition-colors text-xs font-bold" data-action="decrease" data-key="{{ item.key }}">-</button>
+                  <span class="px-2 text-xs font-semibold text-gray-900">{{ item.quantity }}</span>
+                  <button type="button" class="js-cart-qty-btn px-2.5 py-1 text-gray-600 hover:bg-gray-200 transition-colors text-xs font-bold" data-action="increase" data-key="{{ item.key }}">+</button>
+                </div>
+
+                <!-- Price -->
+                <div class="text-right">
+                  <span class="text-xs font-bold text-gray-900">{{ item.final_line_price | money }}</span>
+                  {%- if item.original_line_price > item.final_line_price -%}
+                    <s class="text-[10px] text-gray-400 block">{{ item.original_line_price | money }}</s>
+                  {%- endif -%}
+                </div>
+              </div>
+            </div>
+          </div>
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+
+    <!-- Footer Area -->
+    {%- if cart.item_count > 0 -%}
+      <div id="CartDrawerFooter" class="cart-drawer__footer p-5 bg-[#FFF7F9] border-t border-[#F3E2E8] space-y-3">
+        <!-- Subtotal -->
+        <div class="flex items-center justify-between">
+          <span class="text-sm font-semibold text-gray-700">{{ 'sections.cart.subtotal' | t | default: 'Subtotal' }}</span>
+          <span id="CartDrawerSubtotal" class="text-base font-extrabold text-gray-900">{{ cart.total_price | money }}</span>
+        </div>
+        <p class="text-[11px] text-gray-500 text-center">
+          {{ 'sections.cart.taxes_and_shipping_policy_at_checkout_html' | t | default: 'Impuestos y envío calculados al finalizar la compra' }}
+        </p>
+
+        <!-- Checkout Button -->
+        <a href="/checkout" class="w-full btn-primary bg-[#111111] hover:bg-[#333333] text-white py-3.5 px-6 rounded-xl font-bold text-xs uppercase tracking-wider text-center flex items-center justify-center gap-2 shadow-lg transition-all transform hover:-translate-y-0.5">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+          <span>{{ 'sections.cart.checkout' | t | default: 'Finalizar Compra Segura' }}</span>
+        </a>
+
+        <!-- Trust Badges -->
+        <div class="flex items-center justify-center gap-3 pt-2 text-[10px] text-gray-500 font-medium">
+          <span class="flex items-center gap-1">
+            {% render 'icon-lock', class: 'w-3 h-3 text-[#E86B91]' %} SSL 256-bit
+          </span>
+          <span>•</span>
+          <span class="flex items-center gap-1">
+            {% render 'icon-shield', class: 'w-3 h-3 text-[#E86B91]' %} Garantía 90 Días
+          </span>
+        </div>
+      </div>
+    {%- endif -%}
+  </div>
+</div>

@@ -1,0 +1,86 @@
+{% comment %}
+  Newsletter Signup Section
+{% endcomment %}
+
+<section class="newsletter-section py-16 md:py-20 bg-gradient-to-b from-[#FCEAEF] to-[#F8C8D8]">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+    <div class="space-y-3">
+      <h2 class="font-heading text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight">
+        {{ section.settings.heading | default: 'Suscríbete y entérate de todo' }}
+      </h2>
+      <p class="text-xs sm:text-sm text-gray-700 max-w-xl mx-auto leading-relaxed">
+        {{ section.settings.subheading | default: 'Recibe ofertas exclusivas, guías secretas de cuidado de la piel y 10% OFF en tu primera orden.' }}
+      </p>
+    </div>
+
+    {% form 'customer', class: 'max-w-md mx-auto relative' %}
+      <input type="hidden" name="contact[tags]" value="newsletter">
+
+      {%- if form.posted_successfully? -%}
+        <div class="p-4 bg-emerald-50 text-emerald-800 rounded-2xl text-xs font-semibold border border-emerald-200">
+          🎉 ¡Gracias por suscribirte! Revisa tu bandeja de entrada para tu código de descuento.
+        </div>
+      {%- else -%}
+        <div class="relative flex items-center">
+          <input
+            type="email"
+            name="contact[email]"
+            value="{{ form.email }}"
+            placeholder="{{ section.settings.placeholder | default: 'Ingresa tu correo electrónico' }}"
+            class="w-full pl-5 pr-14 py-4 rounded-full bg-white text-gray-900 placeholder-gray-400 text-xs sm:text-sm shadow-xl focus:outline-none focus:ring-2 focus:ring-[#E86B91] border border-transparent"
+            required
+            autocomplete="email"
+          >
+          <button
+            type="submit"
+            class="absolute right-2 w-10 h-10 rounded-full bg-[#111111] hover:bg-[#333333] text-white flex items-center justify-center transition-colors shadow-md focus:outline-none"
+            aria-label="Suscribirse"
+          >
+            {% render 'icon-arrow-right', class: 'w-4 h-4' %}
+          </button>
+        </div>
+
+        {%- if form.errors -%}
+          <p class="text-xs text-red-600 mt-2 font-medium">
+            {{ form.errors.translated_fields.email | capitalize }} {{ form.errors.messages.email }}
+          </p>
+        {%- endif -%}
+      {%- endif -%}
+    {% endform %}
+
+    <p class="text-[11px] text-gray-500 max-w-md mx-auto">
+      Al suscribirte aceptas nuestras Políticas de Privacidad y recibir correos promocionales.
+    </p>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Newsletter Box",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Suscríbete y entérate de todo"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Recibe ofertas exclusivas, guías secretas de cuidado de la piel y 10% OFF en tu primera orden."
+    },
+    {
+      "type": "text",
+      "id": "placeholder",
+      "label": "Email Placeholder",
+      "default": "Ingresa tu correo electrónico"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Newsletter Box"
+    }
+  ]
+}
+{% endschema %}

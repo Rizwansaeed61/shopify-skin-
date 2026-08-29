@@ -1,0 +1,236 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "ShinnySkin OS 2.0",
+    "theme_version": "1.0.0",
+    "theme_author": "Antigravity",
+    "theme_documentation_url": "https://github.com/",
+    "theme_support_url": "https://github.com/"
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Brand Colors"
+      },
+      {
+        "type": "color",
+        "id": "color_primary",
+        "label": "Primary Accent (Buttons, Highlights)",
+        "default": "#111111"
+      },
+      {
+        "type": "color",
+        "id": "color_primary_hover",
+        "label": "Primary Button Hover",
+        "default": "#333333"
+      },
+      {
+        "type": "color",
+        "id": "color_brand_pink",
+        "label": "Brand Blush Pink",
+        "default": "#F7D5DF"
+      },
+      {
+        "type": "color",
+        "id": "color_brand_pink_dark",
+        "label": "Brand Rose Pink (Badges / Accents)",
+        "default": "#E86B91"
+      },
+      {
+        "type": "color",
+        "id": "color_background",
+        "label": "Main Background",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "color",
+        "id": "color_background_soft",
+        "label": "Soft Section Background",
+        "default": "#FFF5F7"
+      },
+      {
+        "type": "color",
+        "id": "color_text",
+        "label": "Main Text Color",
+        "default": "#1A1A1A"
+      },
+      {
+        "type": "color",
+        "id": "color_text_muted",
+        "label": "Muted / Subtitle Text",
+        "default": "#666666"
+      },
+      {
+        "type": "color",
+        "id": "color_border",
+        "label": "Borders & Dividers",
+        "default": "#EFE0E5"
+      },
+      {
+        "type": "color",
+        "id": "color_star",
+        "label": "Review Stars Color",
+        "default": "#FFB800"
+      },
+      {
+        "type": "color",
+        "id": "color_badge_sale",
+        "label": "Sale / Discount Badge",
+        "default": "#E86B91"
+      }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      {
+        "type": "font_picker",
+        "id": "font_heading",
+        "label": "Heading Font",
+        "default": "playfair_display_n7"
+      },
+      {
+        "type": "font_picker",
+        "id": "font_body",
+        "label": "Body Font",
+        "default": "sans-serif"
+      },
+      {
+        "type": "range",
+        "id": "font_heading_scale",
+        "min": 80,
+        "max": 140,
+        "step": 5,
+        "unit": "%",
+        "label": "Heading Font Scale",
+        "default": 100
+      },
+      {
+        "type": "range",
+        "id": "font_body_scale",
+        "min": 80,
+        "max": 130,
+        "step": 5,
+        "unit": "%",
+        "label": "Body Font Scale",
+        "default": 100
+      }
+    ]
+  },
+  {
+    "name": "Cart & Drawer",
+    "settings": [
+      {
+        "type": "select",
+        "id": "cart_type",
+        "label": "Cart Type",
+        "options": [
+          { "value": "drawer", "label": "Slide-out Drawer" },
+          { "value": "page", "label": "Cart Page" }
+        ],
+        "default": "drawer"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_free_shipping_bar",
+        "label": "Show Free Shipping Progress Bar",
+        "default": true
+      },
+      {
+        "type": "number",
+        "id": "free_shipping_threshold",
+        "label": "Free Shipping Threshold ($)",
+        "default": 50
+      },
+      {
+        "type": "text",
+        "id": "free_shipping_text_progress",
+        "label": "Shipping Progress Text",
+        "default": "¡Agrega [amount] más para obtener ENVÍO GRATIS!"
+      },
+      {
+        "type": "text",
+        "id": "free_shipping_text_unlocked",
+        "label": "Shipping Unlocked Text",
+        "default": "🎉 ¡Felicidades! Tienes ENVÍO GRATIS asegurado"
+      }
+    ]
+  },
+  {
+    "name": "WhatsApp Floating Chat",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enable_whatsapp",
+        "label": "Enable WhatsApp Floating Button",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "whatsapp_number",
+        "label": "WhatsApp Phone Number (with country code, e.g. 5215555555555)",
+        "default": "5215555555555"
+      },
+      {
+        "type": "text",
+        "id": "whatsapp_default_message",
+        "label": "Default Pre-filled Message",
+        "default": "¡Hola ShinnySkin! Me gustaría recibir información sobre la Depiladora IPL Pro."
+      }
+    ]
+  },
+  {
+    "name": "Floating Discount Badge",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enable_floating_discount",
+        "label": "Enable Floating Sticky Discount Button",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "floating_discount_text",
+        "label": "Badge Text",
+        "default": "10% OFF"
+      },
+      {
+        "type": "text",
+        "id": "floating_discount_code",
+        "label": "Discount Coupon Code",
+        "default": "SHINNY10"
+      }
+    ]
+  },
+  {
+    "name": "Social Media Links",
+    "settings": [
+      {
+        "type": "text",
+        "id": "social_instagram_link",
+        "label": "Instagram URL",
+        "default": "https://instagram.com/myshinnyskin"
+      },
+      {
+        "type": "text",
+        "id": "social_tiktok_link",
+        "label": "TikTok URL",
+        "default": "https://tiktok.com/@myshinnyskin"
+      },
+      {
+        "type": "text",
+        "id": "social_facebook_link",
+        "label": "Facebook URL",
+        "default": "https://facebook.com/shinnyskin"
+      },
+      {
+        "type": "text",
+        "id": "social_youtube_link",
+        "label": "YouTube URL",
+        "default": "https://youtube.com/"
+      }
+    ]
+  }
+]

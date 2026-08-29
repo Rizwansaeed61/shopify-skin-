@@ -1,0 +1,190 @@
+{% comment %}
+  Featured Collection / Cross-Sell Carousel Section
+{% endcomment %}
+
+<section class="featured-collection py-16 md:py-24 bg-[#FFF7F9]" data-carousel-container>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Header with Arrow Controls -->
+    <div class="flex items-end justify-between mb-10">
+      <div>
+        <span class="section-tag">{{ section.settings.tag | default: 'RUTINA COMPLETA' }}</span>
+        <h2 class="font-heading text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight mt-2">
+          {{ section.settings.heading | default: 'Complementa tu depilación' }}
+        </h2>
+      </div>
+
+      <!-- Arrow Controls -->
+      <div class="flex items-center gap-2">
+        <button
+          type="button"
+          class="w-10 h-10 rounded-full bg-white border border-[#F3E2E8] hover:border-[#E86B91] hover:text-[#E86B91] text-gray-700 flex items-center justify-center shadow-sm transition-all focus:outline-none"
+          data-carousel-prev
+          aria-label="Anterior"
+        >
+          {% render 'icon-arrow-left' %}
+        </button>
+        <button
+          type="button"
+          class="w-10 h-10 rounded-full bg-white border border-[#F3E2E8] hover:border-[#E86B91] hover:text-[#E86B91] text-gray-700 flex items-center justify-center shadow-sm transition-all focus:outline-none"
+          data-carousel-next
+          aria-label="Siguiente"
+        >
+          {% render 'icon-arrow-right' %}
+        </button>
+      </div>
+    </div>
+
+    <!-- Product Track / Grid -->
+    <div
+      class="flex gap-6 overflow-x-auto no-scrollbar pb-6 scroll-smooth"
+      data-carousel-track
+    >
+      {%- assign collection = section.settings.collection -%}
+      {%- if collection != blank and collection.products_count > 0 -%}
+        {%- for product in collection.products limit: section.settings.products_to_show -%}
+          <div class="w-64 sm:w-72 flex-shrink-0">
+            {% render 'product-card', product_card_product: product, show_secondary_image: true, show_rating: true, show_quick_add: true %}
+          </div>
+        {%- endfor -%}
+      {%- else -%}
+        <!-- High-converting Default Demo Cards for Immediate Visual Preview -->
+        <!-- Demo Item 1 -->
+        <div class="w-64 sm:w-72 flex-shrink-0 product-card group">
+          <div class="product-card__media-wrapper relative overflow-hidden rounded-2xl bg-[#FFF8FA] border border-[#F3E2E8] aspect-square flex items-center justify-center p-4">
+            <div class="absolute top-3 left-3 bg-[#E86B91] text-white text-[11px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider shadow-sm">-30% OFF</div>
+            <div class="text-6xl">🧴</div>
+            <div class="product-card__quick-actions absolute bottom-3 inset-x-3 transition-all duration-300 opacity-0 group-hover:opacity-100">
+              <a href="/collections/all" class="w-full bg-[#111111] hover:bg-[#333333] text-white text-xs font-semibold py-2.5 px-4 rounded-xl shadow-md transition-colors flex items-center justify-center">
+                Ver Producto
+              </a>
+            </div>
+          </div>
+          <div class="product-card__info mt-3.5 space-y-1">
+            <div class="flex items-center gap-1 text-[#FFB800]">
+              {%- for i in (1..5) -%}{% render 'icon-star' %}{%- endfor -%}
+              <span class="text-xs text-gray-500 font-medium">(4.9)</span>
+            </div>
+            <h3 class="text-sm font-bold text-gray-900">Combo Tratamiento Completo</h3>
+            <p class="text-xs text-gray-500">Kit IPL + Gel Conductor + Loción Calmante</p>
+            <div class="pt-1">
+              <span class="font-bold text-gray-900">$139.00</span>
+              <s class="text-gray-400 text-xs ml-2">$199.00</s>
+            </div>
+          </div>
+        </div>
+
+        <!-- Demo Item 2 -->
+        <div class="w-64 sm:w-72 flex-shrink-0 product-card group">
+          <div class="product-card__media-wrapper relative overflow-hidden rounded-2xl bg-[#FFF8FA] border border-[#F3E2E8] aspect-square flex items-center justify-center p-4">
+            <div class="absolute top-3 left-3 bg-[#E86B91] text-white text-[11px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider shadow-sm">-25% OFF</div>
+            <div class="text-6xl">✨</div>
+            <div class="product-card__quick-actions absolute bottom-3 inset-x-3 transition-all duration-300 opacity-0 group-hover:opacity-100">
+              <a href="/collections/all" class="w-full bg-[#111111] hover:bg-[#333333] text-white text-xs font-semibold py-2.5 px-4 rounded-xl shadow-md transition-colors flex items-center justify-center">
+                Ver Producto
+              </a>
+            </div>
+          </div>
+          <div class="product-card__info mt-3.5 space-y-1">
+            <div class="flex items-center gap-1 text-[#FFB800]">
+              {%- for i in (1..5) -%}{% render 'icon-star' %}{%- endfor -%}
+              <span class="text-xs text-gray-500 font-medium">(4.8)</span>
+            </div>
+            <h3 class="text-sm font-bold text-gray-900">Mini Shaver Trimmer Facial</h3>
+            <p class="text-xs text-gray-500">Recortador de precisión para cejas y rostro</p>
+            <div class="pt-1">
+              <span class="font-bold text-gray-900">$29.00</span>
+              <s class="text-gray-400 text-xs ml-2">$39.00</s>
+            </div>
+          </div>
+        </div>
+
+        <!-- Demo Item 3 -->
+        <div class="w-64 sm:w-72 flex-shrink-0 product-card group">
+          <div class="product-card__media-wrapper relative overflow-hidden rounded-2xl bg-[#FFF8FA] border border-[#F3E2E8] aspect-square flex items-center justify-center p-4">
+            <div class="text-6xl">🕶️</div>
+            <div class="product-card__quick-actions absolute bottom-3 inset-x-3 transition-all duration-300 opacity-0 group-hover:opacity-100">
+              <a href="/collections/all" class="w-full bg-[#111111] hover:bg-[#333333] text-white text-xs font-semibold py-2.5 px-4 rounded-xl shadow-md transition-colors flex items-center justify-center">
+                Ver Producto
+              </a>
+            </div>
+          </div>
+          <div class="product-card__info mt-3.5 space-y-1">
+            <div class="flex items-center gap-1 text-[#FFB800]">
+              {%- for i in (1..5) -%}{% render 'icon-star' %}{%- endfor -%}
+              <span class="text-xs text-gray-500 font-medium">(5.0)</span>
+            </div>
+            <h3 class="text-sm font-bold text-gray-900">Gafas de Protección UV IPL</h3>
+            <p class="text-xs text-gray-500">Lentes oscuros con filtro de luz pulsada</p>
+            <div class="pt-1">
+              <span class="font-bold text-gray-900">$19.00</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Demo Item 4 -->
+        <div class="w-64 sm:w-72 flex-shrink-0 product-card group">
+          <div class="product-card__media-wrapper relative overflow-hidden rounded-2xl bg-[#FFF8FA] border border-[#F3E2E8] aspect-square flex items-center justify-center p-4">
+            <div class="absolute top-3 left-3 bg-[#E86B91] text-white text-[11px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider shadow-sm">-20% OFF</div>
+            <div class="text-6xl">🌸</div>
+            <div class="product-card__quick-actions absolute bottom-3 inset-x-3 transition-all duration-300 opacity-0 group-hover:opacity-100">
+              <a href="/collections/all" class="w-full bg-[#111111] hover:bg-[#333333] text-white text-xs font-semibold py-2.5 px-4 rounded-xl shadow-md transition-colors flex items-center justify-center">
+                Ver Producto
+              </a>
+            </div>
+          </div>
+          <div class="product-card__info mt-3.5 space-y-1">
+            <div class="flex items-center gap-1 text-[#FFB800]">
+              {%- for i in (1..5) -%}{% render 'icon-star' %}{%- endfor -%}
+              <span class="text-xs text-gray-500 font-medium">(4.9)</span>
+            </div>
+            <h3 class="text-sm font-bold text-gray-900">Loción Calmante Post-IPL</h3>
+            <p class="text-xs text-gray-500">Con Aloe Vera orgánico y Ácido Hialurónico</p>
+            <div class="pt-1">
+              <span class="font-bold text-gray-900">$24.00</span>
+              <s class="text-gray-400 text-xs ml-2">$30.00</s>
+            </div>
+          </div>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured Collection",
+  "settings": [
+    {
+      "type": "text",
+      "id": "tag",
+      "label": "Section Tag",
+      "default": "RUTINA COMPLETA"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Complementa tu depilación"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 4,
+      "max": 12,
+      "step": 1,
+      "label": "Maximum products to show",
+      "default": 6
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Collection"
+    }
+  ]
+}
+{% endschema %}

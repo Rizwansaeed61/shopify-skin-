@@ -1,0 +1,31 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "settings": {}
+    },
+    "benefits": {
+      "type": "product-benefits",
+      "settings": {}
+    },
+    "how_it_works": {
+      "type": "how-it-works",
+      "settings": {}
+    },
+    "testimonials": {
+      "type": "testimonials",
+      "settings": {}
+    },
+    "value_props": {
+      "type": "value-props",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main",
+    "benefits",
+    "how_it_works",
+    "testimonials",
+    "value_props"
+  ]
+}

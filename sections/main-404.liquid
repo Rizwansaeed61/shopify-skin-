@@ -1,0 +1,27 @@
+{% comment %}
+  404 Not Found Section OS 2.0
+{% endcomment %}
+
+<section class="main-404 py-24 bg-[#FFF7F9] text-center">
+  <div class="max-w-xl mx-auto px-4 space-y-6">
+    <div class="text-7xl">🌸</div>
+    <h1 class="font-heading text-4xl sm:text-5xl font-extrabold text-gray-900 tracking-tight">
+      {{ 'sections.404.title' | t | default: '404 - Página no encontrada' }}
+    </h1>
+    <p class="text-sm text-gray-600">
+      {{ 'sections.404.subtext' | t | default: 'Lo sentimos, la página que estás buscando no existe o fue movida.' }}
+    </p>
+    <div>
+      <a href="/" class="btn-primary px-8 py-3.5 text-xs font-bold uppercase rounded-full inline-block">
+        {{ 'sections.404.link' | t | default: 'Volver al Inicio' }}
+      </a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "404 Page",
+  "settings": []
+}
+{% endschema %}

@@ -1,0 +1,63 @@
+{
+  "general": {
+    "search": {
+      "placeholder": "Buscar en nuestra tienda...",
+      "submit": "Buscar",
+      "heading": "Resultados de búsqueda",
+      "no_results": "No se encontraron resultados para \"{{ terms }}\""
+    },
+    "newsletter": {
+      "heading": "Suscríbete y entérate de todo",
+      "subtext": "Al suscribirte aceptas recibir novedades y ofertas exclusivas de ShinnySkin. Puedes cancelar tu suscripción en cualquier momento.",
+      "placeholder": "Ingresa tu correo electrónico",
+      "submit": "Suscribirme",
+      "success": "¡Gracias por suscribirte! Revisa tu bandeja de entrada.",
+      "error": "Por favor ingresa un correo válido."
+    },
+    "reviews": {
+      "rating": "Calificación",
+      "verified_buyer": "Comprador verificado",
+      "see_all": "Ver todas las reseñas"
+    }
+  },
+  "sections": {
+    "header": {
+      "menu": "Menú",
+      "cart": "Carrito",
+      "search": "Buscar",
+      "account": "Mi Cuenta"
+    },
+    "cart": {
+      "title": "Tu Carrito",
+      "empty": "Tu carrito está actualmente vacío",
+      "continue_shopping": "Continuar comprando",
+      "checkout": "Finalizar Compra Segura",
+      "subtotal": "Subtotal",
+      "taxes_and_shipping_policy_at_checkout_html": "Impuestos y costo de envío calculados al finalizar la compra",
+      "quantity": "Cantidad",
+      "remove": "Eliminar",
+      "free_shipping": "Envío gratis",
+      "secure_checkout": "Pago 100% Encriptado y Seguro"
+    },
+    "featured_collection": {
+      "quick_add": "Agregar al Carrito",
+      "sold_out": "Agotado",
+      "on_sale": "Oferta",
+      "view_all": "Ver todos los productos"
+    },
+    "product": {
+      "add_to_cart": "Agregar al Carrito",
+      "buy_now": "Comprar Ahora",
+      "sold_out": "Agotado",
+      "quantity": "Cantidad",
+      "description": "Descripción",
+      "shipping_guarantee": "Garantía de 90 Días",
+      "free_shipping": "Envío Gratis a todo el país"
+    },
+    "404": {
+      "title": "Página no encontrada",
+      "subtext": "Lo sentimos, la página que buscas no existe o ha sido movida.",
+      "link": "Volver al inicio"
+    }
+  }
+}

@@ -1,0 +1,146 @@
+{% comment %}
+  Footer Section with 4 Navigation Columns & Payment Badges
+{% endcomment %}
+
+<footer class="site-footer bg-[#FFF7F9] border-t border-[#F3E2E8] pt-16 pb-12 text-gray-700">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 lg:gap-12 pb-12 border-b border-[#F0DFE5]">
+      <!-- Brand column -->
+      <div class="col-span-2 md:col-span-4 lg:col-span-2 space-y-4">
+        <span class="font-heading text-2xl font-extrabold tracking-tight text-gray-900 uppercase">
+          {{ section.settings.brand_name | default: 'SHINNY SKIN' }}
+        </span>
+        <p class="text-xs text-gray-600 max-w-sm leading-relaxed">
+          {{ section.settings.about_text | default: 'Tecnología de luz pulsada de última generación para una piel suave, libre de vellos y radiante desde la comodidad de tu hogar.' }}
+        </p>
+        <div class="pt-2">
+          {% render 'social-icons', class: 'justify-start' %}
+        </div>
+      </div>
+
+      <!-- Column 1: ShinnySkin -->
+      <div class="space-y-3">
+        <h4 class="text-xs font-bold uppercase tracking-wider text-gray-900">
+          {{ section.settings.menu_1_title | default: 'ShinnySkin' }}
+        </h4>
+        <ul class="space-y-2 text-xs">
+          {%- for link in section.settings.menu_1.links -%}
+            <li><a href="{{ link.url }}" class="hover:text-[#E86B91] transition-colors">{{ link.title }}</a></li>
+          {%- else -%}
+            <li><a href="/" class="hover:text-[#E86B91] transition-colors">Inicio</a></li>
+            <li><a href="/pages/nosotros" class="hover:text-[#E86B91] transition-colors">Nuestra Historia</a></li>
+            <li><a href="#como-funciona" class="hover:text-[#E86B91] transition-colors">¿Cómo Funciona?</a></li>
+            <li><a href="/pages/faq" class="hover:text-[#E86B91] transition-colors">Preguntas Frecuentes</a></li>
+          {%- endfor -%}
+        </ul>
+      </div>
+
+      <!-- Column 2: Complementos -->
+      <div class="space-y-3">
+        <h4 class="text-xs font-bold uppercase tracking-wider text-gray-900">
+          {{ section.settings.menu_2_title | default: 'Complementos' }}
+        </h4>
+        <ul class="space-y-2 text-xs">
+          {%- for link in section.settings.menu_2.links -%}
+            <li><a href="{{ link.url }}" class="hover:text-[#E86B91] transition-colors">{{ link.title }}</a></li>
+          {%- else -%}
+            <li><a href="/collections/all" class="hover:text-[#E86B91] transition-colors">Depiladora IPL Pro</a></li>
+            <li><a href="/collections/all" class="hover:text-[#E86B91] transition-colors">Mini Shaver Facial</a></li>
+            <li><a href="/collections/all" class="hover:text-[#E86B91] transition-colors">Geles Conductores</a></li>
+            <li><a href="/collections/all" class="hover:text-[#E86B91] transition-colors">Kits Completos</a></li>
+          {%- endfor -%}
+        </ul>
+      </div>
+
+      <!-- Column 3: Ayuda & Políticas -->
+      <div class="space-y-3">
+        <h4 class="text-xs font-bold uppercase tracking-wider text-gray-900">
+          {{ section.settings.menu_3_title | default: 'Ayuda y Políticas' }}
+        </h4>
+        <ul class="space-y-2 text-xs">
+          {%- for link in section.settings.menu_3.links -%}
+            <li><a href="{{ link.url }}" class="hover:text-[#E86B91] transition-colors">{{ link.title }}</a></li>
+          {%- else -%}
+            <li><a href="/pages/envios" class="hover:text-[#E86B91] transition-colors">Tiempos de Envío</a></li>
+            <li><a href="/pages/garantia" class="hover:text-[#E86B91] transition-colors">Garantía de 90 Días</a></li>
+            <li><a href="/policies/privacy-policy" class="hover:text-[#E86B91] transition-colors">Políticas de Privacidad</a></li>
+            <li><a href="/policies/terms-of-service" class="hover:text-[#E86B91] transition-colors">Términos de Servicio</a></li>
+          {%- endfor -%}
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom Copyright & Badges -->
+    <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500">
+      <p>© {{ 'now' | date: '%Y' }} {{ shop.name }}. Todos los derechos reservados.</p>
+      <div class="flex items-center gap-3">
+        <span class="text-[11px] font-semibold text-gray-600">Compra 100% Protegida por SSL</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "text",
+      "id": "brand_name",
+      "label": "Brand Name",
+      "default": "SHINNY SKIN"
+    },
+    {
+      "type": "textarea",
+      "id": "about_text",
+      "label": "About Text",
+      "default": "Tecnología de luz pulsada de última generación para una piel suave, libre de vellos y radiante desde la comodidad de tu hogar."
+    },
+    {
+      "type": "header",
+      "content": "Navigation Column 1"
+    },
+    {
+      "type": "text",
+      "id": "menu_1_title",
+      "label": "Column 1 Title",
+      "default": "ShinnySkin"
+    },
+    {
+      "type": "link_list",
+      "id": "menu_1",
+      "label": "Menu 1"
+    },
+    {
+      "type": "header",
+      "content": "Navigation Column 2"
+    },
+    {
+      "type": "text",
+      "id": "menu_2_title",
+      "label": "Column 2 Title",
+      "default": "Complementos"
+    },
+    {
+      "type": "link_list",
+      "id": "menu_2",
+      "label": "Menu 2"
+    },
+    {
+      "type": "header",
+      "content": "Navigation Column 3"
+    },
+    {
+      "type": "text",
+      "id": "menu_3_title",
+      "label": "Column 3 Title",
+      "default": "Ayuda y Políticas"
+    },
+    {
+      "type": "link_list",
+      "id": "menu_3",
+      "label": "Menu 3"
+    }
+  ]
+}
+{% endschema %}

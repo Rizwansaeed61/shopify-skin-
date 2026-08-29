@@ -1,0 +1,48 @@
+{% comment %}
+  Main Collection Section OS 2.0
+{% endcomment %}
+
+<section class="main-collection py-12 md:py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Title & Description -->
+    <div class="text-center max-w-2xl mx-auto mb-12">
+      <h1 class="font-heading text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight">
+        {{ collection.title | default: 'Colección de Productos' }}
+      </h1>
+      {%- if collection.description != blank -%}
+        <div class="text-xs sm:text-sm text-gray-600 mt-3 leading-relaxed">
+          {{ collection.description }}
+        </div>
+      {%- endif -%}
+    </div>
+
+    <!-- Products Grid -->
+    {%- paginate collection.products by 16 -%}
+      {%- if collection.products.size > 0 -%}
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {%- for product in collection.products -%}
+            {% render 'product-card', product_card_product: product, show_secondary_image: true, show_rating: true, show_quick_add: true %}
+          {%- endfor -%}
+        </div>
+
+        {%- if paginate.pages > 1 -%}
+          <div class="mt-12 flex justify-center gap-2">
+            {{ paginate | default_pagination }}
+          </div>
+        {%- endif -%}
+      {%- else -%}
+        <div class="text-center py-16">
+          <p class="text-base text-gray-600 mb-4">No hay productos en esta colección en este momento.</p>
+          <a href="/" class="btn-primary px-6 py-3 text-xs font-bold uppercase rounded-full">Volver al Inicio</a>
+        </div>
+      {%- endif -%}
+    {%- endpaginate -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Main Collection Grid",
+  "settings": []
+}
+{% endschema %}

@@ -1,0 +1,193 @@
+<!doctype html>
+<html class="no-js" lang="{{ request.locale.iso_code }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="{{ settings.color_brand_pink }}">
+    <link rel="canonical" href="{{ canonical_url }}">
+    <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Google Fonts (Plus Jakarta Sans & Playfair Display) -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    {%- if settings.favicon != blank -%}
+      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+    {%- endif -%}
+
+    <title>
+      {{ page_title }}
+      {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
+      {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
+      {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+    </title>
+
+    {% if page_description %}
+      <meta name="description" content="{{ page_description | escape }}">
+    {% endif %}
+
+    {% comment %} OpenGraph / Social {% endcomment %}
+    <meta property="og:site_name" content="{{ shop.name }}">
+    <meta property="og:url" content="{{ canonical_url }}">
+    <meta property="og:title" content="{{ page_title | default: shop.name }}">
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="{{ page_description | default: shop.name }}">
+    {%- if page_image -%}
+      <meta property="og:image" content="http:{{ page_image | image_url: width: 1200 }}">
+      <meta property="og:image:secure_url" content="https:{{ page_image | image_url: width: 1200 }}">
+    {%- endif -%}
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ page_title | default: shop.name }}">
+    <meta name="twitter:description" content="{{ page_description | default: shop.name }}">
+
+    {{ content_for_header }}
+
+    <!-- Tailwind CDN for utility styling & custom base theme.css -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brandPink: '{{ settings.color_brand_pink | default: "#F7D5DF" }}',
+              brandPinkDark: '{{ settings.color_brand_pink_dark | default: "#E86B91" }}',
+              brandSoft: '{{ settings.color_background_soft | default: "#FFF7F9" }}',
+            },
+            fontFamily: {
+              heading: ['"Playfair Display"', 'Georgia', 'serif'],
+              sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            }
+          }
+        }
+      }
+    </script>
+
+    {{ 'theme.css' | asset_url | stylesheet_tag }}
+
+    <script>
+      document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+      window.ShopifyTheme = {
+        moneyFormat: {{ shop.money_format | json }},
+        routes: {
+          cart_add_url: '{{ routes.cart_add_url }}',
+          cart_change_url: '{{ routes.cart_change_url }}',
+          cart_update_url: '{{ routes.cart_update_url }}',
+          cart_url: '{{ routes.cart_url }}',
+          predictive_search_url: '{{ routes.predictive_search_url }}'
+        },
+        strings: {
+          addToCart: {{ 'sections.product.add_to_cart' | t | default: 'Agregar al Carrito' | json }},
+          soldOut: {{ 'sections.product.sold_out' | t | default: 'Agotado' | json }},
+          freeShippingUnlocked: {{ settings.free_shipping_text_unlocked | json }},
+          freeShippingProgress: {{ settings.free_shipping_text_progress | json }},
+          freeShippingThreshold: {{ settings.free_shipping_threshold | default: 50 | json }}
+        }
+      };
+    </script>
+  </head>
+
+  <body class="bg-[#FFFFFF] text-[#1A1A1A] font-sans antialiased selection:bg-[#F7D5DF] selection:text-[#E86B91]">
+    <a class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:p-4 focus:bg-white focus:text-black" href="#MainContent">
+      Skip to content
+    </a>
+
+    <!-- Sticky & Global Header Section Group -->
+    <div class="site-header-group sticky top-0 z-40">
+      {% section 'announcement-bar' %}
+      {% section 'header' %}
+    </div>
+
+    <!-- Main Content -->
+    <main id="MainContent" class="site-main focus:outline-none" role="main" tabindex="-1">
+      {{ content_for_layout }}
+    </main>
+
+    <!-- Global Footer -->
+    {% section 'footer' %}
+
+    <!-- Cart Drawer -->
+    {% render 'cart-drawer' %}
+
+    <!-- Video Popup Modal -->
+    <div id="ThemeVideoModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md opacity-0 invisible transition-all duration-300 pointer-events-none">
+      <div class="relative w-full max-w-3xl bg-black rounded-3xl overflow-hidden shadow-2xl aspect-video border border-white/20">
+        <button type="button" class="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-black/60 text-white hover:bg-black/90 flex items-center justify-center transition-colors" data-modal-close>
+          {% render 'icon-close' %}
+        </button>
+        <div id="ThemeVideoContainer" class="w-full h-full flex items-center justify-center">
+          <iframe id="ThemeVideoIframe" class="w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+
+    <!-- Search Modal -->
+    <div id="ThemeSearchModal" class="fixed inset-0 z-50 flex items-start justify-center pt-20 px-4 bg-black/60 backdrop-blur-sm opacity-0 invisible transition-all duration-300 pointer-events-none">
+      <div class="relative w-full max-w-2xl bg-white rounded-3xl p-6 shadow-2xl border border-[#F3E2E8]">
+        <div class="flex items-center justify-between mb-4 pb-2 border-b border-gray-100">
+          <h3 class="text-base font-bold text-gray-900 flex items-center gap-2">
+            {% render 'icon-search', class: 'text-[#E86B91]' %}
+            {{ 'general.search.heading' | t | default: 'Buscar en ShinnySkin' }}
+          </h3>
+          <button type="button" class="text-gray-400 hover:text-gray-700 p-1" data-search-close>
+            {% render 'icon-close' %}
+          </button>
+        </div>
+        <form action="{{ routes.search_url }}" method="get" role="search" class="relative">
+          <input
+            type="search"
+            name="q"
+            placeholder="{{ 'general.search.placeholder' | t | default: 'Buscar depiladora IPL, geles, accesorios...' }}"
+            class="w-full pl-12 pr-4 py-3.5 bg-[#FFF7F9] border border-[#F7D5DF] rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-[#E86B91] transition-all"
+          >
+          <button type="submit" class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
+            {% render 'icon-search' %}
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Floating Sticky Discount Badge (Bottom Left) -->
+    {%- if settings.enable_floating_discount -%}
+      <div id="FloatingDiscountBadge" class="fixed bottom-6 left-6 z-30 flex items-center gap-2">
+        <button
+          type="button"
+          class="group relative flex items-center gap-2 bg-[#E86B91] hover:bg-[#D43B65] text-white p-3 pr-4 rounded-full shadow-2xl transition-all transform hover:scale-105 active:scale-95"
+          data-discount-code="{{ settings.floating_discount_code | default: 'SHINNY10' }}"
+        >
+          <span class="w-8 h-8 rounded-full bg-white text-[#E86B91] flex items-center justify-center font-extrabold text-xs shadow-inner">
+            %
+          </span>
+          <span class="text-xs font-bold uppercase tracking-wider">
+            {{ settings.floating_discount_text | default: '10% OFF' }}
+          </span>
+        </button>
+        <div id="DiscountCopiedTooltip" class="hidden absolute left-0 -top-10 bg-gray-900 text-white text-[11px] font-semibold py-1.5 px-3 rounded-lg shadow-lg whitespace-nowrap animate-bounce">
+          ¡Código copiado al portapapeles! ✨
+        </div>
+      </div>
+    {%- endif -%}
+
+    <!-- Floating WhatsApp Support Button (Bottom Right) -->
+    {%- if settings.enable_whatsapp and settings.whatsapp_number != blank -%}
+      {%- assign whatsapp_url = 'https://wa.me/' | append: settings.whatsapp_number | append: '?text=' | append: settings.whatsapp_default_message | url_encode -%}
+      <a
+        href="{{ whatsapp_url }}"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="fixed bottom-6 right-6 z-30 w-14 h-14 bg-[#25D366] hover:bg-[#20ba59] text-white rounded-full shadow-2xl flex items-center justify-center transition-all transform hover:scale-110 active:scale-95 group"
+        aria-label="Contactar por WhatsApp"
+      >
+        {% render 'icon-whatsapp', class: 'w-8 h-8 fill-white' %}
+        <span class="absolute right-16 top-1/2 -translate-y-1/2 bg-white text-gray-800 text-xs font-semibold px-3 py-1.5 rounded-xl shadow-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none border border-gray-100">
+          ¿Dudas? ¡Escríbenos! 💬
+        </span>
+      </a>
+    {%- endif -%}
+
+    <!-- Theme Core Scripts -->
+    <script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>
+  </body>
+</html>

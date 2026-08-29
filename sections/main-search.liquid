@@ -1,0 +1,54 @@
+{% comment %}
+  Main Search Results Section OS 2.0
+{% endcomment %}
+
+<section class="main-search py-12 md:py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-xl mx-auto mb-10 space-y-4">
+      <h1 class="font-heading text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">
+        Resultados de búsqueda
+      </h1>
+      <form action="{{ routes.search_url }}" method="get" class="relative">
+        <input
+          type="search"
+          name="q"
+          value="{{ search.terms | escape }}"
+          placeholder="Buscar..."
+          class="w-full pl-5 pr-12 py-3.5 bg-[#FFF7F9] border border-[#F7D5DF] rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-[#E86B91]"
+        >
+        <button type="submit" class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500">
+          {% render 'icon-search' %}
+        </button>
+      </form>
+    </div>
+
+    {%- if search.performed -%}
+      {%- if search.results_count > 0 -%}
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {%- for item in search.results -%}
+            {%- if item.object_type == 'product' -%}
+              {% render 'product-card', product_card_product: item, show_secondary_image: true, show_rating: true, show_quick_add: true %}
+            {%- else -%}
+              <div class="p-6 rounded-2xl border border-gray-100 bg-gray-50 flex flex-col justify-between">
+                <h3 class="text-sm font-bold text-gray-900 mb-2"><a href="{{ item.url }}">{{ item.title }}</a></h3>
+                <p class="text-xs text-gray-500 line-clamp-3">{{ item.content | strip_html }}</p>
+                <a href="{{ item.url }}" class="text-xs font-bold text-[#E86B91] mt-4">Ver más →</a>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      {%- else -%}
+        <div class="text-center py-16 text-gray-600">
+          <p>No se encontraron resultados para "{{ search.terms }}".</p>
+        </div>
+      {%- endif -%}
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Main Search",
+  "settings": []
+}
+{% endschema %}

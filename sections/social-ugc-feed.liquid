@@ -1,0 +1,184 @@
+{% comment %}
+  Instagram & TikTok UGC Social Feed Section (@MyShinnySkin)
+{% endcomment %}
+
+<section class="social-ugc py-16 md:py-24 bg-[#FFF7F9]" data-carousel-container>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Header with Handle Link -->
+    <div class="flex items-end justify-between mb-10">
+      <div>
+        <span class="section-tag">{{ section.settings.tag | default: 'SÍGUENOS EN REDES' }}</span>
+        <h2 class="font-heading text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight mt-2">
+          <a href="{{ settings.social_instagram_link | default: 'https://instagram.com/myshinnyskin' }}" target="_blank" rel="noopener noreferrer" class="hover:text-[#E86B91] transition-colors">
+            {{ section.settings.heading | default: '@MyShinnySkin' }}
+          </a>
+        </h2>
+        <p class="text-xs sm:text-sm text-gray-600 mt-2">
+          Únete a nuestra comunidad y comparte tu experiencia con el hashtag #ShinnySkin
+        </p>
+      </div>
+
+      <!-- Arrow Controls -->
+      <div class="flex items-center gap-2">
+        <button
+          type="button"
+          class="w-10 h-10 rounded-full bg-white border border-[#F3E2E8] hover:border-[#E86B91] hover:text-[#E86B91] text-gray-700 flex items-center justify-center shadow-sm transition-all focus:outline-none"
+          data-carousel-prev
+          aria-label="Anterior"
+        >
+          {% render 'icon-arrow-left' %}
+        </button>
+        <button
+          type="button"
+          class="w-10 h-10 rounded-full bg-white border border-[#F3E2E8] hover:border-[#E86B91] hover:text-[#E86B91] text-gray-700 flex items-center justify-center shadow-sm transition-all focus:outline-none"
+          data-carousel-next
+          aria-label="Siguiente"
+        >
+          {% render 'icon-arrow-right' %}
+        </button>
+      </div>
+    </div>
+
+    <!-- 6-Item UGC Carousel Track -->
+    <div
+      class="flex gap-4 sm:gap-6 overflow-x-auto no-scrollbar pb-6 scroll-smooth"
+      data-carousel-track
+    >
+      {%- for block in section.blocks -%}
+        <div class="w-48 sm:w-56 flex-shrink-0 group relative rounded-3xl overflow-hidden aspect-[9/16] bg-[#FCEAEF] border border-[#F3E2E8] card-shadow-hover" {{ block.shopify_attributes }}>
+          {%- if block.settings.image != blank -%}
+            <img
+              src="{{ block.settings.image | image_url: width: 400 }}"
+              alt="{{ block.settings.caption }}"
+              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              width="240"
+              height="420"
+              loading="lazy"
+            >
+          {%- else -%}
+            <div class="w-full h-full flex flex-col items-center justify-center bg-gradient-to-tr from-[#F8C8D8] to-[#FFF0F4] p-4 text-center">
+              <span class="text-4xl mb-2">📱</span>
+              <span class="text-xs font-bold text-gray-800">{{ block.settings.caption }}</span>
+            </div>
+          {%- endif -%}
+
+          <!-- Instagram / Reel Overlay -->
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex flex-col justify-between p-4 opacity-90 group-hover:opacity-100 transition-opacity">
+            <div class="self-end bg-black/40 backdrop-blur-md text-white p-1.5 rounded-full">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+              </svg>
+            </div>
+            <div>
+              <p class="text-white text-xs font-bold leading-snug drop-shadow-md">
+                {{ block.settings.caption }}
+              </p>
+              <p class="text-white/80 text-[10px] mt-1 font-medium">@myshinnyskin</p>
+            </div>
+          </div>
+        </div>
+      {%- else -%}
+        <!-- Default 6 Social UGC Cards from Design -->
+        <div class="w-48 sm:w-56 flex-shrink-0 group relative rounded-3xl overflow-hidden aspect-[9/16] bg-[#FF3366] text-white flex flex-col justify-between p-4 card-shadow-hover">
+          <div class="self-end bg-black/40 p-1.5 rounded-full">▶</div>
+          <div>
+            <span class="bg-black/60 text-[10px] font-bold px-2 py-0.5 rounded-md uppercase">Reel</span>
+            <p class="text-white text-xs font-extrabold mt-1">🚩 Red flags en métodos de depilación tradicionales</p>
+          </div>
+        </div>
+
+        <div class="w-48 sm:w-56 flex-shrink-0 group relative rounded-3xl overflow-hidden aspect-[9/16] bg-gradient-to-b from-[#FCEAEF] to-[#E88A9F] flex flex-col justify-between p-4 card-shadow-hover">
+          <div class="self-end bg-black/40 text-white p-1.5 rounded-full">▶</div>
+          <div>
+            <p class="text-white text-xs font-extrabold mt-1 drop-shadow">✨ Depilación fácil y sin dolor en casa</p>
+          </div>
+        </div>
+
+        <div class="w-48 sm:w-56 flex-shrink-0 group relative rounded-3xl overflow-hidden aspect-[9/16] bg-gradient-to-b from-[#FFF0F4] to-[#F7D5DF] flex flex-col justify-between p-4 card-shadow-hover">
+          <div class="self-end bg-black/40 text-white p-1.5 rounded-full">▶</div>
+          <div>
+            <p class="text-gray-900 text-xs font-extrabold mt-1">🌸 Mi secreto para piel de porcelana</p>
+          </div>
+        </div>
+
+        <div class="w-48 sm:w-56 flex-shrink-0 group relative rounded-3xl overflow-hidden aspect-[9/16] bg-[#00B4D8] text-white flex flex-col justify-between p-4 card-shadow-hover">
+          <div class="self-end bg-black/40 p-1.5 rounded-full">▶</div>
+          <div>
+            <p class="text-white text-xs font-extrabold mt-1">💡 Qué pasa realmente cuando te depilas</p>
+          </div>
+        </div>
+
+        <div class="w-48 sm:w-56 flex-shrink-0 group relative rounded-3xl overflow-hidden aspect-[9/16] bg-[#2B2D42] text-white flex flex-col justify-between p-4 card-shadow-hover">
+          <div class="self-end bg-black/40 p-1.5 rounded-full">▶</div>
+          <div>
+            <p class="text-white text-xs font-extrabold mt-1">💆‍♀️ Cambié a ShinnySkin y adiós irritación</p>
+          </div>
+        </div>
+
+        <div class="w-48 sm:w-56 flex-shrink-0 group relative rounded-3xl overflow-hidden aspect-[9/16] bg-gradient-to-b from-[#E86B91] to-[#B84A65] text-white flex flex-col justify-between p-4 card-shadow-hover">
+          <div class="self-end bg-black/40 p-1.5 rounded-full">▶</div>
+          <div>
+            <p class="text-white text-xs font-extrabold mt-1">🧖‍♀️ Rutina de domingo relajada con ShinnySkin</p>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Social UGC Reels",
+  "settings": [
+    {
+      "type": "text",
+      "id": "tag",
+      "label": "Section Tag",
+      "default": "SÍGUENOS EN REDES"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading / Handle",
+      "default": "@MyShinnySkin"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "reel",
+      "name": "Social Reel Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Reel Cover Photo"
+        },
+        {
+          "type": "text",
+          "id": "caption",
+          "label": "Caption / Hook",
+          "default": "Red flags en métodos de depilación"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Instagram / TikTok Post Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Social UGC Reels",
+      "blocks": [
+        { "type": "reel", "settings": { "caption": "🚩 Red flags en métodos de depilación" } },
+        { "type": "reel", "settings": { "caption": "✨ Depilación fácil y sin dolor en casa" } },
+        { "type": "reel", "settings": { "caption": "🌸 Mi secreto para piel de porcelana" } },
+        { "type": "reel", "settings": { "caption": "💡 Qué pasa realmente cuando te depilas" } },
+        { "type": "reel", "settings": { "caption": "💆‍♀️ Cambié a ShinnySkin y adiós irritación" } },
+        { "type": "reel", "settings": { "caption": "🧖‍♀️ Rutina de domingo relajada" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

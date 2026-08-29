@@ -1,0 +1,69 @@
+{% comment %}
+  Press & Media Ticker Section
+{% endcomment %}
+
+<div class="press-ticker py-8 border-y border-[#F3E2E8] bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="text-xs font-bold uppercase tracking-widest text-gray-400 whitespace-nowrap">
+        {{ section.settings.title | default: 'DESTACADO Y RECONOCIDO EN' }}
+      </div>
+
+      <div class="grid grid-cols-3 sm:grid-cols-5 gap-6 sm:gap-10 items-center justify-center opacity-70 hover:opacity-100 transition-opacity">
+        {%- for block in section.blocks -%}
+          <div class="text-center" {{ block.shopify_attributes }}>
+            <span class="font-serif text-lg sm:text-xl md:text-2xl font-bold tracking-widest text-gray-800 hover:text-[#E86B91] transition-colors cursor-default select-none">
+              {{ block.settings.brand_name }}
+            </span>
+          </div>
+        {%- else -%}
+          <span class="font-serif text-lg sm:text-xl md:text-2xl font-bold tracking-widest text-gray-800">COSMOPOLITAN</span>
+          <span class="font-serif text-lg sm:text-xl md:text-2xl font-bold tracking-widest text-gray-800">VOGUE</span>
+          <span class="font-serif text-lg sm:text-xl md:text-2xl font-bold tracking-widest text-gray-800">GLAMOUR</span>
+          <span class="font-serif text-lg sm:text-xl md:text-2xl font-bold tracking-widest text-gray-800">ELLE</span>
+          <span class="font-serif text-lg sm:text-xl md:text-2xl font-bold tracking-widest text-gray-800">BAZAAR</span>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Press Logos Bar",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Label",
+      "default": "DESTACADO Y RECONOCIDO EN"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "media_logo",
+      "name": "Media Outlet",
+      "settings": [
+        {
+          "type": "text",
+          "id": "brand_name",
+          "label": "Brand Name",
+          "default": "VOGUE"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Press Logos Bar",
+      "blocks": [
+        { "type": "media_logo", "settings": { "brand_name": "COSMOPOLITAN" } },
+        { "type": "media_logo", "settings": { "brand_name": "VOGUE" } },
+        { "type": "media_logo", "settings": { "brand_name": "GLAMOUR" } },
+        { "type": "media_logo", "settings": { "brand_name": "ELLE" } },
+        { "type": "media_logo", "settings": { "brand_name": "BAZAAR" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

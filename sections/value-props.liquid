@@ -1,0 +1,130 @@
+{% comment %}
+  4-Column Trust & Value Propositions Section
+{% endcomment %}
+
+<div class="value-props py-12 bg-white border-t border-[#F3E2E8]">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      <!-- Pillar 1: Shipping -->
+      <div class="flex items-start gap-4">
+        <div class="flex-shrink-0 w-12 h-12 rounded-2xl bg-[#FFF0F4] text-[#E86B91] border border-[#F7D5DF] flex items-center justify-center">
+          {% render 'icon-truck' %}
+        </div>
+        <div class="space-y-1">
+          <h3 class="text-sm font-extrabold text-gray-900 uppercase tracking-wide">
+            {{ section.settings.p1_title | default: 'ENVÍO RÁPIDO Y SEGURO' }}
+          </h3>
+          <p class="text-xs text-gray-600 leading-relaxed">
+            {{ section.settings.p1_desc | default: 'Entrega garantizada a todo el país con código de rastreo en tiempo real.' }}
+          </p>
+        </div>
+      </div>
+
+      <!-- Pillar 2: Guarantee -->
+      <div class="flex items-start gap-4">
+        <div class="flex-shrink-0 w-12 h-12 rounded-2xl bg-[#FFF0F4] text-[#E86B91] border border-[#F7D5DF] flex items-center justify-center">
+          {% render 'icon-shield' %}
+        </div>
+        <div class="space-y-1">
+          <h3 class="text-sm font-extrabold text-gray-900 uppercase tracking-wide">
+            {{ section.settings.p2_title | default: 'GARANTÍA DE 90 DÍAS' }}
+          </h3>
+          <p class="text-xs text-gray-600 leading-relaxed">
+            {{ section.settings.p2_desc | default: 'Pruébalo sin ningún riesgo. Si no ves resultados, te devolvemos tu dinero.' }}
+          </p>
+        </div>
+      </div>
+
+      <!-- Pillar 3: Support -->
+      <div class="flex items-start gap-4">
+        <div class="flex-shrink-0 w-12 h-12 rounded-2xl bg-[#FFF0F4] text-[#E86B91] border border-[#F7D5DF] flex items-center justify-center">
+          {% render 'icon-support' %}
+        </div>
+        <div class="space-y-1">
+          <h3 class="text-sm font-extrabold text-gray-900 uppercase tracking-wide">
+            {{ section.settings.p3_title | default: 'SOPORTE 24/7 WHATSAPP' }}
+          </h3>
+          <p class="text-xs text-gray-600 leading-relaxed">
+            {{ section.settings.p3_desc | default: 'Asesoría dermatológica y acompañamiento continuo en cada una de tus sesiones.' }}
+          </p>
+        </div>
+      </div>
+
+      <!-- Pillar 4: Payment -->
+      <div class="flex items-start gap-4">
+        <div class="flex-shrink-0 w-12 h-12 rounded-2xl bg-[#FFF0F4] text-[#E86B91] border border-[#F7D5DF] flex items-center justify-center">
+          {% render 'icon-lock' %}
+        </div>
+        <div class="space-y-1">
+          <h3 class="text-sm font-extrabold text-gray-900 uppercase tracking-wide">
+            {{ section.settings.p4_title | default: 'PAGO 100% SEGURO' }}
+          </h3>
+          <p class="text-xs text-gray-600 leading-relaxed">
+            {{ section.settings.p4_desc | default: 'Múltiples opciones de pago con encriptación SSL de 256 bits de nivel bancario.' }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Value Propositions",
+  "settings": [
+    {
+      "type": "text",
+      "id": "p1_title",
+      "label": "Pillar 1 Title",
+      "default": "ENVÍO RÁPIDO Y SEGURO"
+    },
+    {
+      "type": "textarea",
+      "id": "p1_desc",
+      "label": "Pillar 1 Description",
+      "default": "Entrega garantizada a todo el país con código de rastreo en tiempo real."
+    },
+    {
+      "type": "text",
+      "id": "p2_title",
+      "label": "Pillar 2 Title",
+      "default": "GARANTÍA DE 90 DÍAS"
+    },
+    {
+      "type": "textarea",
+      "id": "p2_desc",
+      "label": "Pillar 2 Description",
+      "default": "Pruébalo sin ningún riesgo. Si no ves resultados, te devolvemos tu dinero."
+    },
+    {
+      "type": "text",
+      "id": "p3_title",
+      "label": "Pillar 3 Title",
+      "default": "SOPORTE 24/7 WHATSAPP"
+    },
+    {
+      "type": "textarea",
+      "id": "p3_desc",
+      "label": "Pillar 3 Description",
+      "default": "Asesoría personalizada y acompañamiento continuo en cada una de tus sesiones."
+    },
+    {
+      "type": "text",
+      "id": "p4_title",
+      "label": "Pillar 4 Title",
+      "default": "PAGO 100% SEGURO"
+    },
+    {
+      "type": "textarea",
+      "id": "p4_desc",
+      "label": "Pillar 4 Description",
+      "default": "Múltiples opciones de pago con encriptación SSL de 256 bits de nivel bancario."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Value Propositions"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,62 @@
+{% comment %}
+  Payment and Security Partners Trust Bar
+{% endcomment %}
+
+<div class="payment-trust-bar py-8 bg-white border-y border-[#F3E2E8]">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+    <p class="text-xs font-bold uppercase tracking-widest text-gray-500">
+      {{ section.settings.title | default: 'NOS RESPALDAN Y PAGOS 100% SEGUROS' }}
+    </p>
+
+    <!-- Payment Badges / Icons -->
+    <div class="flex flex-wrap items-center justify-center gap-6 sm:gap-10 opacity-70 hover:opacity-100 transition-opacity">
+      <!-- Visa -->
+      <span class="font-extrabold text-lg sm:text-xl text-[#1A1F71] tracking-wider italic">VISA</span>
+
+      <!-- Mastercard -->
+      <div class="flex items-center">
+        <span class="w-6 h-6 rounded-full bg-[#EB001B] opacity-90 inline-block"></span>
+        <span class="w-6 h-6 rounded-full bg-[#F79E1B] opacity-90 -ml-3 inline-block"></span>
+      </div>
+
+      <!-- Mercado Pago -->
+      <span class="font-bold text-sm sm:text-base text-[#009EE3] flex items-center gap-1">
+        🤝 MercadoPago
+      </span>
+
+      <!-- PayPal -->
+      <span class="font-bold text-sm sm:text-base text-[#003087] italic">
+        PayPal
+      </span>
+
+      <!-- Shopify Secure -->
+      <span class="font-semibold text-xs sm:text-sm text-[#96BF48] flex items-center gap-1">
+        🛍️ Shopify Secure
+      </span>
+
+      <!-- SSL 256 -->
+      <span class="font-bold text-xs sm:text-sm text-gray-700 flex items-center gap-1">
+        🔒 SSL 256-BIT ENCRYPTION
+      </span>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Payment Partners Bar",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "NOS RESPALDAN Y PAGOS 100% SEGUROS"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Payment Partners Bar"
+    }
+  ]
+}
+{% endschema %}
