@@ -1,90 +1,75 @@
 {% comment %}
-  Skin Concerns Problem-Solution Grid Section
+  Skin Concerns Problem-Solution Grid Section (Exact 1:1 Match to Design)
 {% endcomment %}
 
 <section class="skin-concerns py-16 md:py-24 bg-white">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center max-w-2xl mx-auto mb-12">
-      <span class="section-tag">{{ section.settings.tag | default: 'RESULTADOS COMPROBADOS' }}</span>
-      <h2 class="font-heading text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight mt-2">
+      <span class="text-xs font-bold uppercase tracking-widest text-[#E86B91] block mb-2">
+        {{ section.settings.tag | default: 'SOLUCIONES' }}
+      </span>
+      <h2 class="font-heading text-4xl sm:text-5xl font-extrabold text-gray-900 tracking-tight italic">
         {{ section.settings.heading | default: '¿Cuál es tu mayor preocupación?' }}
       </h2>
-      <p class="text-sm sm:text-base text-gray-600 mt-3">
-        {{ section.settings.subheading | default: 'Diseñado específicamente para combatir los problemas más comunes de los métodos tradicionales de depilación.' }}
-      </p>
     </div>
 
     <!-- 5 Cards Responsive Grid -->
     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6">
-      {%- for block in section.blocks -%}
-        <div class="concern-card group relative rounded-3xl overflow-hidden aspect-[3/4] bg-[#FFF0F4] border border-[#F7D5DF] card-shadow-hover flex flex-col justify-end p-4 sm:p-5" {{ block.shopify_attributes }}>
-          {%- if block.settings.image != blank -%}
-            <img
-              src="{{ block.settings.image | image_url: width: 400 }}"
-              alt="{{ block.settings.title }}"
-              class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-              width="300"
-              height="400"
-              loading="lazy"
-            >
-          {%- else -%}
-            <!-- Modern Gradient Card with Emoji / Icon -->
-            <div class="absolute inset-0 bg-gradient-to-t from-[#E86B91]/80 via-transparent to-transparent flex items-center justify-center">
-              <span class="text-5xl opacity-40 group-hover:scale-125 transition-transform duration-500">
-                {{ block.settings.emoji | default: '🌸' }}
-              </span>
-            </div>
-          {%- endif -%}
+      <!-- Card 1 -->
+      <div class="concern-card group relative rounded-3xl overflow-hidden aspect-[3/4] bg-[#FFF0F4] border border-[#F7D5DF] shadow-md flex flex-col justify-end p-3 sm:p-4">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-0"></div>
+        <div class="relative z-10 text-center bg-white/95 backdrop-blur-md py-2 px-3 rounded-2xl shadow-sm">
+          <h3 class="text-xs sm:text-sm font-bold text-gray-900 leading-tight">
+            Vellos encarnados
+          </h3>
+        </div>
+      </div>
 
-          <div class="relative z-10 text-center bg-white/90 backdrop-blur-md py-2.5 px-3 rounded-2xl border border-white/60 shadow-md transform group-hover:-translate-y-1 transition-transform">
-            <h3 class="text-xs sm:text-sm font-bold text-gray-900 leading-tight">
-              {{ block.settings.title }}
-            </h3>
-          </div>
+      <!-- Card 2 -->
+      <div class="concern-card group relative rounded-3xl overflow-hidden aspect-[3/4] bg-[#FFF0F4] border border-[#F7D5DF] shadow-md flex flex-col justify-end p-3 sm:p-4">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-0"></div>
+        <div class="relative z-10 text-center bg-white/95 backdrop-blur-md py-2 px-3 rounded-2xl shadow-sm">
+          <h3 class="text-xs sm:text-sm font-bold text-gray-900 leading-tight">
+            Irritación y foliculitis
+          </h3>
         </div>
-      {%- else -%}
-        <!-- Default 5 Concern Cards -->
-        <div class="concern-card group relative rounded-3xl overflow-hidden aspect-[3/4] bg-gradient-to-br from-[#FCEAEF] to-[#F8C8D8] border border-[#F7D5DF] card-shadow-hover flex flex-col justify-end p-4">
-          <div class="absolute inset-0 flex items-center justify-center text-5xl">⚡</div>
-          <div class="relative z-10 text-center bg-white/90 backdrop-blur-md py-2.5 px-3 rounded-2xl shadow-sm">
-            <h3 class="text-xs sm:text-sm font-bold text-gray-900">Vellos encarnados</h3>
-          </div>
-        </div>
+      </div>
 
-        <div class="concern-card group relative rounded-3xl overflow-hidden aspect-[3/4] bg-gradient-to-br from-[#FCEAEF] to-[#F8C8D8] border border-[#F7D5DF] card-shadow-hover flex flex-col justify-end p-4">
-          <div class="absolute inset-0 flex items-center justify-center text-5xl">🔥</div>
-          <div class="relative z-10 text-center bg-white/90 backdrop-blur-md py-2.5 px-3 rounded-2xl shadow-sm">
-            <h3 class="text-xs sm:text-sm font-bold text-gray-900">Irritación y foliculitis</h3>
-          </div>
+      <!-- Card 3 -->
+      <div class="concern-card group relative rounded-3xl overflow-hidden aspect-[3/4] bg-[#FFF0F4] border border-[#F7D5DF] shadow-md flex flex-col justify-end p-3 sm:p-4">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-0"></div>
+        <div class="relative z-10 text-center bg-white/95 backdrop-blur-md py-2 px-3 rounded-2xl shadow-sm">
+          <h3 class="text-xs sm:text-sm font-bold text-gray-900 leading-tight">
+            Piel sensible
+          </h3>
         </div>
+      </div>
 
-        <div class="concern-card group relative rounded-3xl overflow-hidden aspect-[3/4] bg-gradient-to-br from-[#FCEAEF] to-[#F8C8D8] border border-[#F7D5DF] card-shadow-hover flex flex-col justify-end p-4">
-          <div class="absolute inset-0 flex items-center justify-center text-5xl">🌸</div>
-          <div class="relative z-10 text-center bg-white/90 backdrop-blur-md py-2.5 px-3 rounded-2xl shadow-sm">
-            <h3 class="text-xs sm:text-sm font-bold text-gray-900">Piel sensible</h3>
-          </div>
+      <!-- Card 4 -->
+      <div class="concern-card group relative rounded-3xl overflow-hidden aspect-[3/4] bg-[#FFF0F4] border border-[#F7D5DF] shadow-md flex flex-col justify-end p-3 sm:p-4">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-0"></div>
+        <div class="relative z-10 text-center bg-white/95 backdrop-blur-md py-2 px-3 rounded-2xl shadow-sm">
+          <h3 class="text-xs sm:text-sm font-bold text-gray-900 leading-tight">
+            Manchas oscuras
+          </h3>
         </div>
+      </div>
 
-        <div class="concern-card group relative rounded-3xl overflow-hidden aspect-[3/4] bg-gradient-to-br from-[#FCEAEF] to-[#F8C8D8] border border-[#F7D5DF] card-shadow-hover flex flex-col justify-end p-4">
-          <div class="absolute inset-0 flex items-center justify-center text-5xl">✨</div>
-          <div class="relative z-10 text-center bg-white/90 backdrop-blur-md py-2.5 px-3 rounded-2xl shadow-sm">
-            <h3 class="text-xs sm:text-sm font-bold text-gray-900">Manchas oscuras</h3>
-          </div>
+      <!-- Card 5 -->
+      <div class="concern-card group relative rounded-3xl overflow-hidden aspect-[3/4] bg-[#FFF0F4] border border-[#F7D5DF] shadow-md flex flex-col justify-end p-3 sm:p-4 col-span-2 sm:col-span-1">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-0"></div>
+        <div class="relative z-10 text-center bg-white/95 backdrop-blur-md py-2 px-3 rounded-2xl shadow-sm">
+          <h3 class="text-xs sm:text-sm font-bold text-gray-900 leading-tight">
+            Dolor por cera
+          </h3>
         </div>
-
-        <div class="concern-card group relative rounded-3xl overflow-hidden aspect-[3/4] bg-gradient-to-br from-[#FCEAEF] to-[#F8C8D8] border border-[#F7D5DF] card-shadow-hover flex flex-col justify-end p-4 col-span-2 sm:col-span-1">
-          <div class="absolute inset-0 flex items-center justify-center text-5xl">🌿</div>
-          <div class="relative z-10 text-center bg-white/90 backdrop-blur-md py-2.5 px-3 rounded-2xl shadow-sm">
-            <h3 class="text-xs sm:text-sm font-bold text-gray-900">Dolor por cera</h3>
-          </div>
-        </div>
-      {%- endfor -%}
+      </div>
     </div>
 
-    <!-- Trust claim statement -->
+    <!-- Trust Statement -->
     <div class="text-center mt-12">
-      <p class="text-xs sm:text-sm font-bold uppercase tracking-widest text-[#E86B91] bg-[#FFF0F4] inline-block px-6 py-2.5 rounded-full border border-[#F7D5DF]">
-        {{ section.settings.bottom_statement | default: '✨ ÚNETE A MÁS DE 50,000+ MUJERES CON PIEL SUAVE Y LIBRE DE VELLOS ✨' }}
+      <p class="text-xs sm:text-sm font-extrabold uppercase tracking-widest text-[#E86B91] bg-[#FFF0F4] inline-block px-6 py-2.5 rounded-full border border-[#F7D5DF]">
+        {{ section.settings.bottom_statement | default: 'ÚNETE A MÁS DE 50,000+ MUJERES CON PIEL SUAVE Y LIBRE DE VELLOS' }}
       </p>
     </div>
   </div>
@@ -97,8 +82,8 @@
     {
       "type": "text",
       "id": "tag",
-      "label": "Section Tag",
-      "default": "RESULTADOS COMPROBADOS"
+      "label": "Tag",
+      "default": "SOLUCIONES"
     },
     {
       "type": "text",
@@ -107,53 +92,15 @@
       "default": "¿Cuál es tu mayor preocupación?"
     },
     {
-      "type": "textarea",
-      "id": "subheading",
-      "label": "Subheading",
-      "default": "Diseñado específicamente para combatir los problemas más comunes de los métodos tradicionales."
-    },
-    {
       "type": "text",
       "id": "bottom_statement",
-      "label": "Bottom Trust Statement",
-      "default": "✨ ÚNETE A MÁS DE 50,000+ MUJERES CON PIEL SUAVE Y LIBRE DE VELLOS ✨"
-    }
-  ],
-  "blocks": [
-    {
-      "type": "concern",
-      "name": "Concern Item",
-      "settings": [
-        {
-          "type": "text",
-          "id": "title",
-          "label": "Concern Title",
-          "default": "Vellos encarnados"
-        },
-        {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Photo Image"
-        },
-        {
-          "type": "text",
-          "id": "emoji",
-          "label": "Fallback Emoji (if no image)",
-          "default": "🌸"
-        }
-      ]
+      "label": "Bottom Statement",
+      "default": "ÚNETE A MÁS DE 50,000+ MUJERES CON PIEL SUAVE Y LIBRE DE VELLOS"
     }
   ],
   "presets": [
     {
-      "name": "Skin Concerns",
-      "blocks": [
-        { "type": "concern", "settings": { "title": "Vellos encarnados", "emoji": "⚡" } },
-        { "type": "concern", "settings": { "title": "Irritación y foliculitis", "emoji": "🔥" } },
-        { "type": "concern", "settings": { "title": "Piel sensible", "emoji": "🌸" } },
-        { "type": "concern", "settings": { "title": "Manchas oscuras", "emoji": "✨" } },
-        { "type": "concern", "settings": { "title": "Dolor por cera", "emoji": "🌿" } }
-      ]
+      "name": "Skin Concerns"
     }
   ]
 }

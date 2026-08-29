@@ -1,134 +1,100 @@
 {% comment %}
-  Hero Banner Section - High Impact IPL Showcase
+  Hero Banner Section - High Impact IPL Showcase (Pixel-Perfect to Design)
 {% endcomment %}
 
-<section class="hero-banner relative overflow-hidden bg-gradient-to-b from-[#FCEAEF] via-[#F8C8D8] to-[#FFFFFF] pt-8 pb-16 md:py-20 lg:py-24">
-  <!-- Subtle repeating watermark background -->
-  <div class="hero-watermark opacity-25 font-black uppercase text-center select-none pointer-events-none">
-    {{ section.settings.watermark_text | default: 'DEPILADORA IPL PRO' }}
+<section class="hero-banner relative overflow-hidden bg-gradient-to-b from-[#E6557E] via-[#D8426C] to-[#C73059] text-white py-12 md:py-16 lg:py-20">
+  <!-- Multi-line repeating watermark background -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none select-none opacity-15 flex flex-col justify-around py-4">
+    <div class="text-[5rem] sm:text-[7rem] lg:text-[9rem] font-black uppercase text-white tracking-widest whitespace-nowrap leading-none transform -rotate-3 -translate-x-10">
+      DEPILADORA IPL PRO
+    </div>
+    <div class="text-[5rem] sm:text-[7rem] lg:text-[9rem] font-black uppercase text-white tracking-widest whitespace-nowrap leading-none transform -rotate-3 -translate-x-4">
+      DEPILADORA IPL PRO
+    </div>
+    <div class="text-[5rem] sm:text-[7rem] lg:text-[9rem] font-black uppercase text-white tracking-widest whitespace-nowrap leading-none transform -rotate-3 -translate-x-12">
+      DEPILADORA IPL PRO
+    </div>
+    <div class="text-[5rem] sm:text-[7rem] lg:text-[9rem] font-black uppercase text-white tracking-widest whitespace-nowrap leading-none transform -rotate-3 -translate-x-6">
+      DEPILADORA IPL PRO
+    </div>
   </div>
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
       <!-- Left Visual (Dual Device 3D Presentation) -->
       <div class="lg:col-span-6 flex justify-center items-center relative">
-        <div class="relative w-full max-w-lg">
+        <div class="relative w-full max-w-md sm:max-w-lg aspect-square flex items-center justify-center">
+          <!-- Ambient Glow -->
+          <div class="absolute inset-0 bg-white/20 rounded-full filter blur-3xl transform scale-75 animate-pulse"></div>
+
           {%- if section.settings.image != blank -%}
             <img
               src="{{ section.settings.image | image_url: width: 1000 }}"
-              alt="{{ section.settings.image.alt | default: section.settings.heading }}"
-              class="w-full h-auto object-contain animate-float drop-shadow-2xl"
+              alt="{{ section.settings.image.alt | default: 'Depiladora IPL Pro ShinnySkin' }}"
+              class="relative z-10 w-full h-full object-contain drop-shadow-2xl animate-float"
               width="600"
               height="600"
               loading="eager"
             >
           {%- else -%}
-            <!-- Fallback High Fidelity SVG Vector Handset Presentation -->
-            <div class="relative w-full aspect-square flex items-center justify-center animate-float">
-              <!-- Glow background -->
-              <div class="absolute inset-0 bg-white/40 rounded-full filter blur-3xl transform scale-90"></div>
-
-              <svg viewBox="0 0 600 600" class="w-full h-full drop-shadow-2xl" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <!-- Device 1: Rose Gold Handset -->
-                <g transform="translate(100, 70) rotate(-10 160 220)">
-                  <ellipse cx="150" cy="220" rx="110" ry="170" fill="url(#roseGoldGrad)" filter="drop-shadow(0 20px 30px rgba(184, 80, 110, 0.4))"/>
-                  <!-- Digital screen -->
-                  <rect x="110" y="150" width="80" height="90" rx="20" fill="#111111"/>
-                  <text x="150" y="195" fill="#00FFCC" font-size="20" font-family="monospace" font-weight="bold" text-anchor="middle">999,999</text>
-                  <text x="150" y="225" fill="#FFFFFF" font-size="10" font-family="sans-serif" text-anchor="middle">FLASHES</text>
-                  <!-- Pulse button -->
-                  <ellipse cx="150" cy="275" rx="25" ry="15" fill="#E86B91" stroke="#FFFFFF" stroke-width="2"/>
-                </g>
-
-                <!-- Device 2: Pearl White Handset -->
-                <g transform="translate(260, 120) rotate(8 160 220)">
-                  <ellipse cx="150" cy="220" rx="110" ry="170" fill="url(#pearlWhiteGrad)" stroke="#F0E0E6" stroke-width="3" filter="drop-shadow(0 25px 35px rgba(0, 0, 0, 0.15))"/>
-                  <!-- Digital screen -->
-                  <rect x="110" y="150" width="80" height="90" rx="20" fill="#111111"/>
-                  <text x="150" y="195" fill="#00FFCC" font-size="20" font-family="monospace" font-weight="bold" text-anchor="middle">999,999</text>
-                  <text x="150" y="225" fill="#FFFFFF" font-size="10" font-family="sans-serif" text-anchor="middle">FLASHES</text>
-                  <!-- Gold ring button -->
-                  <ellipse cx="150" cy="275" rx="25" ry="15" fill="#FFFFFF" stroke="#D4AF37" stroke-width="3"/>
-                </g>
-
-                <defs>
-                  <linearGradient id="roseGoldGrad" x1="50" y1="50" x2="250" y2="390" gradientUnits="userSpaceOnUse">
-                    <stop stop-color="#FFD1DC"/>
-                    <stop offset="0.5" stop-color="#E88A9F"/>
-                    <stop offset="1" stop-color="#B84A65"/>
-                  </linearGradient>
-                  <linearGradient id="pearlWhiteGrad" x1="50" y1="50" x2="250" y2="390" gradientUnits="userSpaceOnUse">
-                    <stop stop-color="#FFFFFF"/>
-                    <stop offset="0.7" stop-color="#F9F5F7"/>
-                    <stop offset="1" stop-color="#E5D8DF"/>
-                  </linearGradient>
-                </defs>
-              </svg>
-            </div>
+            <img
+              src="{{ 'hero-handsets.jpg' | asset_url }}"
+              alt="Depiladora IPL Pro ShinnySkin"
+              class="relative z-10 w-full h-full object-contain rounded-3xl drop-shadow-2xl animate-float"
+              width="600"
+              height="600"
+              loading="eager"
+            >
           {%- endif -%}
         </div>
       </div>
 
-      <!-- Right Content Card -->
+      <!-- Right Content Area -->
       <div class="lg:col-span-6 space-y-6 text-left">
-        <!-- Badge -->
-        <div class="inline-flex items-center gap-2 bg-white/90 backdrop-blur-sm border border-[#F7D5DF] px-4 py-1.5 rounded-full text-xs font-bold text-[#E86B91] shadow-sm">
-          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-          <span>{{ section.settings.badge_text | default: '⭐ MÁS VENDIDO - TECNOLOGÍA IPL PRO' }}</span>
+        <!-- Review Rating Pill Badge -->
+        <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md border border-white/30 px-3.5 py-1.5 rounded-full text-xs font-bold text-white shadow-sm">
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span>{{ section.settings.badge_text | default: '4.9/5 - MÁS DE 50,000 CLIENTES SATISFECHAS' }}</span>
         </div>
 
-        <!-- Headline -->
-        <h1 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-[1.15] tracking-tight">
+        <!-- Main Headline -->
+        <h1 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-[1.1] tracking-tight">
           {{ section.settings.heading | default: 'Depilación permanente con ShinnySkin' }}
         </h1>
 
-        <!-- Subtitle / Bullet Points -->
-        <div class="space-y-3.5 pt-2">
-          {%- for block in section.blocks -%}
-            {%- case block.type -%}
-              {%- when 'bullet_point' -%}
-                <div class="flex items-start gap-3 text-sm sm:text-base font-medium text-gray-800" {{ block.shopify_attributes }}>
-                  <span class="flex-shrink-0 w-6 h-6 rounded-full bg-[#FFF0F4] text-[#E86B91] flex items-center justify-center font-bold text-xs mt-0.5 border border-[#F7D5DF]">
-                    ✓
-                  </span>
-                  <span>{{ block.settings.text }}</span>
-                </div>
-            {%- endcase -%}
-          {%- else -%}
-            <div class="flex items-start gap-3 text-sm sm:text-base font-medium text-gray-800">
-              <span class="flex-shrink-0 w-6 h-6 rounded-full bg-[#FFF0F4] text-[#E86B91] flex items-center justify-center font-bold text-xs mt-0.5 border border-[#F7D5DF]">✓</span>
-              <span>Resultados visibles en tan solo 3 a 4 semanas.</span>
-            </div>
-            <div class="flex items-start gap-3 text-sm sm:text-base font-medium text-gray-800">
-              <span class="flex-shrink-0 w-6 h-6 rounded-full bg-[#FFF0F4] text-[#E86B91] flex items-center justify-center font-bold text-xs mt-0.5 border border-[#F7D5DF]">✓</span>
-              <span>Tecnología 100% indolora y segura para todo tipo de piel.</span>
-            </div>
-            <div class="flex items-start gap-3 text-sm sm:text-base font-medium text-gray-800">
-              <span class="flex-shrink-0 w-6 h-6 rounded-full bg-[#FFF0F4] text-[#E86B91] flex items-center justify-center font-bold text-xs mt-0.5 border border-[#F7D5DF]">✓</span>
-              <span>Garantía de 90 días con devolución total del dinero.</span>
-            </div>
-          {%- endfor -%}
-        </div>
-
-        <!-- CTA Action Area -->
-        <div class="pt-4 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+        <!-- CTA & Circular Seal Badge Row -->
+        <div class="pt-2 flex flex-wrap items-center gap-5">
           <a
-            href="{{ section.settings.button_link | default: '/products/depiladora-ipl-pro' }}"
-            class="btn-primary w-full sm:w-auto px-10 py-4 text-sm font-extrabold uppercase tracking-wider bg-[#111111] hover:bg-[#333333] text-white shadow-xl transform hover:-translate-y-0.5 transition-all text-center rounded-full flex items-center justify-center gap-2"
+            href="{{ section.settings.button_link | default: '/collections/all' }}"
+            class="btn-primary px-8 sm:px-10 py-4 text-xs sm:text-sm font-extrabold uppercase tracking-wider bg-[#111111] hover:bg-[#222222] text-white shadow-2xl rounded-full transform hover:scale-105 transition-all flex items-center justify-center gap-2"
           >
-            <span>{{ section.settings.button_text | default: 'Comprar Ahora' }}</span>
+            <span>{{ section.settings.button_text | default: 'COMPRA CON 50% DE DESCUENTO' }}</span>
             {% render 'icon-arrow-right', class: 'w-4 h-4' %}
           </a>
 
-          <!-- Guarantee Seal Mini Badge -->
-          <div class="flex items-center gap-2.5 px-4 py-2 bg-white/80 backdrop-blur-sm rounded-2xl border border-[#F7D5DF] shadow-sm">
-            <div class="w-9 h-9 rounded-full bg-[#FFF0F4] text-[#E86B91] flex items-center justify-center font-extrabold text-xs">
-              90D
+          <!-- Circular Guarantee Badge Seal -->
+          <div class="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 border-white/40 bg-white/10 backdrop-blur-md p-1 flex items-center justify-center text-center shadow-lg transform rotate-6 hover:rotate-0 transition-transform">
+            <div class="w-full h-full rounded-full border border-dashed border-white/60 flex flex-col items-center justify-center">
+              <span class="text-[9px] sm:text-[10px] font-extrabold leading-none uppercase">Garantía</span>
+              <span class="text-xs sm:text-sm font-black text-amber-300">90 DÍAS</span>
+              <span class="text-[8px] font-medium opacity-90">100% Seguro</span>
             </div>
-            <div class="text-[11px] leading-tight">
-              <p class="font-bold text-gray-900">Garantía Total</p>
-              <p class="text-gray-500">Pruébala sin riesgo</p>
-            </div>
+          </div>
+        </div>
+
+        <!-- 3 Value Bullet Points -->
+        <div class="space-y-3 pt-3 border-t border-white/20">
+          <div class="flex items-center gap-3 text-xs sm:text-sm font-medium text-white/95">
+            <span class="text-emerald-300 text-base">🔒</span>
+            <span>Compra 100% segura y protegida con garantía total</span>
+          </div>
+          <div class="flex items-center gap-3 text-xs sm:text-sm font-medium text-white/95">
+            <span class="text-amber-300 text-base">🚚</span>
+            <span>Envío gratis a todo el país + rastreo en tiempo real</span>
+          </div>
+          <div class="flex items-center gap-3 text-xs sm:text-sm font-medium text-white/95">
+            <span class="text-pink-200 text-base">⭐</span>
+            <span>Resultados visibles en 3 a 4 semanas sin dolor ni irritación</span>
           </div>
         </div>
       </div>
@@ -141,12 +107,6 @@
   "name": "Hero IPL Showcase",
   "settings": [
     {
-      "type": "text",
-      "id": "watermark_text",
-      "label": "Watermark Background Text",
-      "default": "DEPILADORA IPL PRO"
-    },
-    {
       "type": "image_picker",
       "id": "image",
       "label": "Hero Product Image"
@@ -155,7 +115,7 @@
       "type": "text",
       "id": "badge_text",
       "label": "Badge Text",
-      "default": "⭐ MÁS VENDIDO - TECNOLOGÍA IPL PRO"
+      "default": "4.9/5 - MÁS DE 50,000 CLIENTES SATISFECHAS"
     },
     {
       "type": "text",
@@ -167,7 +127,7 @@
       "type": "text",
       "id": "button_text",
       "label": "Button Text",
-      "default": "Comprar Ahora"
+      "default": "COMPRA CON 50% DE DESCUENTO"
     },
     {
       "type": "url",
@@ -175,43 +135,9 @@
       "label": "Button Link"
     }
   ],
-  "blocks": [
-    {
-      "type": "bullet_point",
-      "name": "Bullet Point",
-      "settings": [
-        {
-          "type": "text",
-          "id": "text",
-          "label": "Bullet Text",
-          "default": "Resultados visibles en tan solo 3 a 4 semanas."
-        }
-      ]
-    }
-  ],
   "presets": [
     {
-      "name": "Hero IPL Showcase",
-      "blocks": [
-        {
-          "type": "bullet_point",
-          "settings": {
-            "text": "Resultados visibles en pocas semanas desde casa."
-          }
-        },
-        {
-          "type": "bullet_point",
-          "settings": {
-            "text": "Tecnología 100% indolora y segura para áreas sensibles."
-          }
-        },
-        {
-          "type": "bullet_point",
-          "settings": {
-            "text": "Garantía de devolución de 90 días sin complicaciones."
-          }
-        }
-      ]
+      "name": "Hero IPL Showcase"
     }
   ]
 }

@@ -1,99 +1,106 @@
 {% comment %}
-  How It Works Section with Steps & Interactive Video Modal
+  How It Works Section (Exact 1:1 Match to Design)
 {% endcomment %}
 
-<section id="como-funciona" class="how-it-works py-16 md:py-24 bg-[#FFF7F9]">
+<section id="como-funciona" class="how-it-works py-16 md:py-24 bg-white">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
       <!-- Left Steps Column -->
       <div class="lg:col-span-6 space-y-8">
         <div>
-          <span class="section-tag">{{ section.settings.tag | default: 'FÁCIL Y SEGURO EN CASA' }}</span>
-          <h2 class="font-heading text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight mt-2">
+          <span class="text-xs font-bold uppercase tracking-widest text-[#E86B91] block mb-2">
+            {{ section.settings.tag | default: 'APRENDE EN 3 PASOS' }}
+          </span>
+          <h2 class="font-heading text-4xl sm:text-5xl font-extrabold text-gray-900 tracking-tight italic">
             {{ section.settings.heading | default: '¿Cómo funciona?' }}
           </h2>
-          <p class="text-sm sm:text-base text-gray-600 mt-3">
-            {{ section.settings.subheading | default: 'Dile adiós a la cera y a los rastrillos en solo 3 sencillos pasos semanales.' }}
-          </p>
         </div>
 
-        <!-- Steps List -->
+        <!-- 3 Step Items -->
         <div class="space-y-6">
-          {%- for block in section.blocks -%}
-            <div class="flex items-start gap-4 p-4 rounded-2xl bg-white/80 backdrop-blur-sm border border-[#F7D5DF] shadow-sm hover:border-[#E86B91] transition-colors" {{ block.shopify_attributes }}>
-              <div class="flex-shrink-0 w-10 h-10 rounded-full bg-[#E86B91] text-white flex items-center justify-center font-heading font-extrabold text-base shadow-md">
-                {{ forloop.index }}
-              </div>
-              <div class="space-y-1">
-                <h3 class="text-base font-bold text-gray-900">{{ block.settings.title }}</h3>
-                <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">{{ block.settings.description }}</p>
-              </div>
+          <!-- Step 1 -->
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-[#FFF0F4] border border-[#F7D5DF] text-[#E86B91] flex items-center justify-center font-bold text-base shadow-sm">
+              1
             </div>
-          {%- else -%}
-            <div class="flex items-start gap-4 p-4 rounded-2xl bg-white/80 border border-[#F7D5DF] shadow-sm">
-              <div class="flex-shrink-0 w-10 h-10 rounded-full bg-[#E86B91] text-white flex items-center justify-center font-heading font-extrabold text-base">1</div>
-              <div class="space-y-1">
-                <h3 class="text-base font-bold text-gray-900">Rasura el área</h3>
-                <p class="text-xs sm:text-sm text-gray-600">Asegura que la zona esté limpia y seca para que el pulso de luz penetre directamente al folículo.</p>
-              </div>
+            <div class="space-y-1">
+              <h3 class="text-base font-bold text-gray-900">
+                Rasura el área antes de usar el dispositivo
+              </h3>
+              <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                Asegúrate de que la piel esté completamente limpia y seca para que la luz pulsada viaje directo a la raíz del folículo.
+              </p>
             </div>
-            <div class="flex items-start gap-4 p-4 rounded-2xl bg-white/80 border border-[#F7D5DF] shadow-sm">
-              <div class="flex-shrink-0 w-10 h-10 rounded-full bg-[#E86B91] text-white flex items-center justify-center font-heading font-extrabold text-base">2</div>
-              <div class="space-y-1">
-                <h3 class="text-base font-bold text-gray-900">Elige tu intensidad</h3>
-                <p class="text-xs sm:text-sm text-gray-600">Selecciona entre los 5 niveles de intensidad adaptados para cada tono de piel y sensibilidad.</p>
-              </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-[#FFF0F4] border border-[#F7D5DF] text-[#E86B91] flex items-center justify-center font-bold text-base shadow-sm">
+              2
             </div>
-            <div class="flex items-start gap-4 p-4 rounded-2xl bg-white/80 border border-[#F7D5DF] shadow-sm">
-              <div class="flex-shrink-0 w-10 h-10 rounded-full bg-[#E86B91] text-white flex items-center justify-center font-heading font-extrabold text-base">3</div>
-              <div class="space-y-1">
-                <h3 class="text-base font-bold text-gray-900">Aplica los pulsos de luz</h3>
-                <p class="text-xs sm:text-sm text-gray-600">Coloca el cabezal a 90° sobre la piel y desliza. Solo 15 minutos una vez a la semana.</p>
-              </div>
+            <div class="space-y-1">
+              <h3 class="text-base font-bold text-gray-900">
+                Selecciona el nivel de intensidad adecuado
+              </h3>
+              <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                Cuenta con 5 niveles de potencia ajustables según tu tono de piel y nivel de sensibilidad para un tratamiento 100% cómodo.
+              </p>
             </div>
-          {%- endfor -%}
+          </div>
+
+          <!-- Step 3 -->
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-[#FFF0F4] border border-[#F7D5DF] text-[#E86B91] flex items-center justify-center font-bold text-base shadow-sm">
+              3
+            </div>
+            <div class="space-y-1">
+              <h3 class="text-base font-bold text-gray-900">
+                Coloca el cabezal a 90° y presiona el botón
+              </h3>
+              <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                Desliza sobre la piel aplicando los pulsos. Solo toma de 15 a 20 minutos por sesión una sola vez a la semana.
+              </p>
+            </div>
+          </div>
         </div>
 
-        <div>
+        <div class="pt-2">
           <a
-            href="{{ section.settings.button_link | default: '/products/depiladora-ipl-pro' }}"
+            href="{{ section.settings.button_link | default: '/collections/all' }}"
             class="btn-primary px-8 py-3.5 text-xs font-bold uppercase tracking-wider bg-[#111111] hover:bg-[#333333] text-white rounded-full shadow-lg"
           >
-            {{ section.settings.button_text | default: 'Comenzar Mi Tratamiento' }}
+            {{ section.settings.button_text | default: 'COMPRAR AHORA' }}
           </a>
         </div>
       </div>
 
-      <!-- Right Video Card -->
+      <!-- Right Video Card Frame -->
       <div class="lg:col-span-6">
         <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white aspect-[4/3] group bg-[#FCEAEF]">
           {%- if section.settings.video_poster != blank -%}
             <img
               src="{{ section.settings.video_poster | image_url: width: 800 }}"
-              alt="ShinnySkin en uso"
+              alt="Demostración ShinnySkin"
               class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               width="600"
               height="450"
             >
           {%- else -%}
-            <!-- Fallback SVG Demonstration Aesthetic Card -->
-            <div class="w-full h-full flex flex-col items-center justify-center bg-gradient-to-tr from-[#F8C8D8] to-[#FFF0F4] p-8 text-center">
-              <div class="w-24 h-24 rounded-full bg-[#E86B91]/10 flex items-center justify-center mb-4">
-                <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#E86B91" stroke-width="1.5">
-                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                </svg>
-              </div>
-              <p class="font-heading text-xl font-bold text-gray-800">Ver Demostración en Vivo</p>
-              <p class="text-xs text-gray-500 mt-1">Descubre cómo usar tu dispositivo ShinnySkin paso a paso</p>
-            </div>
+            <img
+              src="{{ 'how-it-works-girl.jpg' | asset_url }}"
+              alt="Demostración ShinnySkin"
+              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              width="600"
+              height="450"
+            >
           {%- endif -%}
 
-          <!-- Glowing Play Button Trigger -->
+          <!-- Glowing Play Button -->
           <button
             type="button"
             class="absolute inset-0 m-auto w-20 h-20 rounded-full bg-white text-[#E86B91] hover:text-[#D43B65] shadow-2xl flex items-center justify-center pulse-glow transform group-hover:scale-110 transition-transform focus:outline-none"
             data-video-url="{{ section.settings.video_url | default: 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1' }}"
-            aria-label="Reproducir video"
+            aria-label="Reproducir video de demostración"
           >
             <svg class="w-8 h-8 ml-1" viewBox="0 0 24 24" fill="currentColor">
               <polygon points="6 3 20 12 6 21 6 3"></polygon>
@@ -112,8 +119,8 @@
     {
       "type": "text",
       "id": "tag",
-      "label": "Section Tag",
-      "default": "FÁCIL Y SEGURO EN CASA"
+      "label": "Tag",
+      "default": "APRENDE EN 3 PASOS"
     },
     {
       "type": "text",
@@ -122,27 +129,21 @@
       "default": "¿Cómo funciona?"
     },
     {
-      "type": "textarea",
-      "id": "subheading",
-      "label": "Subheading",
-      "default": "Dile adiós a la cera y a los rastrillos en solo 3 sencillos pasos semanales."
-    },
-    {
       "type": "image_picker",
       "id": "video_poster",
-      "label": "Video Preview Image"
+      "label": "Custom Video Poster"
     },
     {
       "type": "text",
       "id": "video_url",
-      "label": "Embed Video URL (YouTube/Vimeo)",
+      "label": "Video Embed URL",
       "default": "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"
     },
     {
       "type": "text",
       "id": "button_text",
       "label": "Button Text",
-      "default": "Comenzar Mi Tratamiento"
+      "default": "COMPRAR AHORA"
     },
     {
       "type": "url",
@@ -150,52 +151,9 @@
       "label": "Button Link"
     }
   ],
-  "blocks": [
-    {
-      "type": "step",
-      "name": "Step Item",
-      "settings": [
-        {
-          "type": "text",
-          "id": "title",
-          "label": "Step Title",
-          "default": "Rasura el área"
-        },
-        {
-          "type": "textarea",
-          "id": "description",
-          "label": "Step Description",
-          "default": "Asegura que la zona esté limpia y seca para que el pulso de luz penetre directamente al folículo."
-        }
-      ]
-    }
-  ],
   "presets": [
     {
-      "name": "How It Works",
-      "blocks": [
-        {
-          "type": "step",
-          "settings": {
-            "title": "Rasura el área",
-            "description": "Rasura la zona a tratar 24 horas antes para que el pulso de luz llegue directamente a la raíz."
-          }
-        },
-        {
-          "type": "step",
-          "settings": {
-            "title": "Elige tu nivel",
-            "description": "Selecciona entre 5 niveles de intensidad adaptados a tu sensibilidad y tono de piel."
-          }
-        },
-        {
-          "type": "step",
-          "settings": {
-            "title": "Aplica y disfruta",
-            "description": "Coloca a 90° y dispara los pulsos. En 15 minutos por semana obtendrás una piel suave y radiante."
-          }
-        }
-      ]
+      "name": "How It Works"
     }
   ]
 }

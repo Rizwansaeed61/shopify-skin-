@@ -1,28 +1,48 @@
 {% comment %}
-  Press & Media Ticker Section
+  Press & Media Reviews Ticker Section (Exact 1:1 Design)
 {% endcomment %}
 
-<div class="press-ticker py-8 border-y border-[#F3E2E8] bg-white">
+<div class="press-ticker py-6 border-y border-[#F3E2E8] bg-white relative overflow-hidden">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex flex-col md:flex-row items-center justify-between gap-6">
-      <div class="text-xs font-bold uppercase tracking-widest text-gray-400 whitespace-nowrap">
-        {{ section.settings.title | default: 'DESTACADO Y RECONOCIDO EN' }}
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 items-center">
+      <!-- Item 1 -->
+      <div class="text-center p-3 border-r border-gray-100 last:border-0 space-y-1.5">
+        <p class="text-[11px] sm:text-xs text-gray-500 italic leading-snug">
+          "La depiladora IPL más recomendada para usar en casa"
+        </p>
+        <h4 class="font-serif text-sm sm:text-base font-black tracking-widest text-gray-900 uppercase">
+          COSMOPOLITAN
+        </h4>
       </div>
 
-      <div class="grid grid-cols-3 sm:grid-cols-5 gap-6 sm:gap-10 items-center justify-center opacity-70 hover:opacity-100 transition-opacity">
-        {%- for block in section.blocks -%}
-          <div class="text-center" {{ block.shopify_attributes }}>
-            <span class="font-serif text-lg sm:text-xl md:text-2xl font-bold tracking-widest text-gray-800 hover:text-[#E86B91] transition-colors cursor-default select-none">
-              {{ block.settings.brand_name }}
-            </span>
-          </div>
-        {%- else -%}
-          <span class="font-serif text-lg sm:text-xl md:text-2xl font-bold tracking-widest text-gray-800">COSMOPOLITAN</span>
-          <span class="font-serif text-lg sm:text-xl md:text-2xl font-bold tracking-widest text-gray-800">VOGUE</span>
-          <span class="font-serif text-lg sm:text-xl md:text-2xl font-bold tracking-widest text-gray-800">GLAMOUR</span>
-          <span class="font-serif text-lg sm:text-xl md:text-2xl font-bold tracking-widest text-gray-800">ELLE</span>
-          <span class="font-serif text-lg sm:text-xl md:text-2xl font-bold tracking-widest text-gray-800">BAZAAR</span>
-        {%- endfor -%}
+      <!-- Item 2 -->
+      <div class="text-center p-3 border-r border-gray-100 last:border-0 space-y-1.5">
+        <p class="text-[11px] sm:text-xs text-gray-500 italic leading-snug">
+          "Resultados de clínica estética sin salir de tu habitación"
+        </p>
+        <h4 class="font-serif text-sm sm:text-base font-black tracking-widest text-gray-900 uppercase">
+          VOGUE
+        </h4>
+      </div>
+
+      <!-- Item 3 -->
+      <div class="text-center p-3 border-r border-gray-100 last:border-0 space-y-1.5">
+        <p class="text-[11px] sm:text-xs text-gray-500 italic leading-snug">
+          "Dile adiós a la cera y a los rastrillos para siempre"
+        </p>
+        <h4 class="font-serif text-sm sm:text-base font-black tracking-widest text-gray-900 uppercase">
+          GLAMOUR
+        </h4>
+      </div>
+
+      <!-- Item 4 -->
+      <div class="text-center p-3 space-y-1.5">
+        <p class="text-[11px] sm:text-xs text-gray-500 italic leading-snug">
+          "La favorita indiscutible de las expertas de belleza"
+        </p>
+        <h4 class="font-serif text-sm sm:text-base font-black tracking-widest text-gray-900 uppercase">
+          ELLE
+        </h4>
       </div>
     </div>
   </div>
@@ -30,39 +50,11 @@
 
 {% schema %}
 {
-  "name": "Press Logos Bar",
-  "settings": [
-    {
-      "type": "text",
-      "id": "title",
-      "label": "Section Label",
-      "default": "DESTACADO Y RECONOCIDO EN"
-    }
-  ],
-  "blocks": [
-    {
-      "type": "media_logo",
-      "name": "Media Outlet",
-      "settings": [
-        {
-          "type": "text",
-          "id": "brand_name",
-          "label": "Brand Name",
-          "default": "VOGUE"
-        }
-      ]
-    }
-  ],
+  "name": "Press Quotes Bar",
+  "settings": [],
   "presets": [
     {
-      "name": "Press Logos Bar",
-      "blocks": [
-        { "type": "media_logo", "settings": { "brand_name": "COSMOPOLITAN" } },
-        { "type": "media_logo", "settings": { "brand_name": "VOGUE" } },
-        { "type": "media_logo", "settings": { "brand_name": "GLAMOUR" } },
-        { "type": "media_logo", "settings": { "brand_name": "ELLE" } },
-        { "type": "media_logo", "settings": { "brand_name": "BAZAAR" } }
-      ]
+      "name": "Press Quotes Bar"
     }
   ]
 }

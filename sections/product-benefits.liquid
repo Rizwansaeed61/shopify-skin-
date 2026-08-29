@@ -1,52 +1,51 @@
 {% comment %}
-  Product Benefits Section - Central Handset with 4 Benefits Flanking
+  Product Benefits Section (Exact 1:1 Match to Design)
 {% endcomment %}
 
-<section class="product-benefits py-16 md:py-24 bg-white relative overflow-hidden">
+<section class="product-benefits py-16 md:py-24 bg-[#FFF7F9] relative overflow-hidden">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <!-- Header -->
     <div class="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
-      <span class="section-tag">{{ section.settings.tag | default: 'POR QUÉ ELEGIRNOS' }}</span>
-      <h2 class="font-heading text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight mt-2">
-        {{ section.settings.heading | default: 'Beneficios de ShinnySkin' }}
+      <span class="text-xs font-bold uppercase tracking-widest text-[#E86B91] block mb-2">
+        {{ section.settings.tag | default: 'POR QUÉ ELEGIRNOS' }}
+      </span>
+      <h2 class="font-heading text-4xl sm:text-5xl font-extrabold text-gray-900 tracking-tight">
+        {{ section.settings.heading | default: 'Beneficios de ShinnySkin®' }}
       </h2>
-      <p class="text-sm sm:text-base text-gray-600 mt-3">
-        {{ section.settings.subheading | default: 'Diseñada con tecnología de grado clínico para que disfrutes de una depilación permanente sin dolor desde casa.' }}
-      </p>
     </div>
 
-    <!-- 3-Column Layout: Left 2 Benefits | Center Product Image | Right 2 Benefits -->
+    <!-- 3-Column Layout: Left 2 Benefits | Center Handsets | Right 2 Benefits -->
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
       <!-- Left Column (Benefits 1 & 2) -->
       <div class="lg:col-span-4 space-y-8 order-2 lg:order-1">
         <!-- Benefit 1 -->
-        <div class="p-6 rounded-3xl bg-[#FFF8FA] border border-[#F7D5DF] card-shadow-hover space-y-3 text-left">
-          <div class="w-12 h-12 rounded-2xl bg-[#FFF0F4] text-[#E86B91] border border-[#F7D5DF] flex items-center justify-center font-bold text-xl shadow-sm">
+        <div class="p-6 rounded-3xl bg-white border border-[#F7D5DF] shadow-sm space-y-2 text-left">
+          <div class="w-10 h-10 rounded-full bg-[#FFF0F4] text-[#E86B91] flex items-center justify-center font-bold text-lg mb-3 border border-[#F7D5DF]">
             💰
           </div>
-          <h3 class="text-base font-extrabold text-gray-900 uppercase tracking-wide">
-            {{ section.settings.b1_title | default: 'AHORRO TOTAL' }}
+          <h3 class="text-sm font-extrabold text-gray-900 uppercase tracking-wider">
+            AHORRO TOTAL
           </h3>
-          <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
-            {{ section.settings.b1_desc | default: 'Olvídate de pagar miles de dólares en costosas sesiones de clínicas láser. Una sola compra dura más de 10 años.' }}
+          <p class="text-xs text-gray-600 leading-relaxed">
+            Olvídate de pagar miles de dólares en clínicas. Una sola compra dura más de 10 años de uso continuo.
           </p>
         </div>
 
         <!-- Benefit 2 -->
-        <div class="p-6 rounded-3xl bg-[#FFF8FA] border border-[#F7D5DF] card-shadow-hover space-y-3 text-left">
-          <div class="w-12 h-12 rounded-2xl bg-[#FFF0F4] text-[#E86B91] border border-[#F7D5DF] flex items-center justify-center font-bold text-xl shadow-sm">
+        <div class="p-6 rounded-3xl bg-white border border-[#F7D5DF] shadow-sm space-y-2 text-left">
+          <div class="w-10 h-10 rounded-full bg-[#FFF0F4] text-[#E86B91] flex items-center justify-center font-bold text-lg mb-3 border border-[#F7D5DF]">
             ✨
           </div>
-          <h3 class="text-base font-extrabold text-gray-900 uppercase tracking-wide">
-            {{ section.settings.b2_title | default: 'PIEL SUAVE SIEMPRE' }}
+          <h3 class="text-sm font-extrabold text-gray-900 uppercase tracking-wider">
+            PIEL SUAVE SIEMPRE
           </h3>
-          <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
-            {{ section.settings.b2_desc | default: 'Reduce el crecimiento del vello corporal hasta en un 95% de forma visible y duradera sin irritación.' }}
+          <p class="text-xs text-gray-600 leading-relaxed">
+            Reduce visiblemente el crecimiento del vello hasta en un 95% sin dejar puntos negros ni vellos encarnados.
           </p>
         </div>
       </div>
 
-      <!-- Center Column (Handset Showcase) -->
+      <!-- Center Handsets Presentation -->
       <div class="lg:col-span-4 flex justify-center items-center order-1 lg:order-2 my-6 lg:my-0">
         <div class="relative w-full max-w-xs aspect-square flex items-center justify-center">
           <div class="absolute inset-0 bg-[#FCEAEF] rounded-full filter blur-2xl transform scale-90"></div>
@@ -60,13 +59,14 @@
               loading="lazy"
             >
           {%- else -%}
-            <!-- Vector Illustration of Handsets -->
-            <svg viewBox="0 0 400 400" class="relative z-10 w-full h-full drop-shadow-xl animate-float" fill="none">
-              <ellipse cx="160" cy="190" rx="75" ry="115" fill="#E88A9F" stroke="#B84A65" stroke-width="2"/>
-              <ellipse cx="230" cy="210" rx="75" ry="115" fill="#FFFFFF" stroke="#F0DFE5" stroke-width="3"/>
-              <rect x="200" y="170" width="60" height="60" rx="15" fill="#111111"/>
-              <circle cx="230" cy="260" r="14" fill="#E86B91"/>
-            </svg>
+            <img
+              src="{{ 'hero-handsets.jpg' | asset_url }}"
+              alt="ShinnySkin Handsets"
+              class="relative z-10 w-full h-auto object-contain rounded-2xl animate-float drop-shadow-xl"
+              width="350"
+              height="350"
+              loading="lazy"
+            >
           {%- endif -%}
         </div>
       </div>
@@ -74,40 +74,40 @@
       <!-- Right Column (Benefits 3 & 4) -->
       <div class="lg:col-span-4 space-y-8 order-3">
         <!-- Benefit 3 -->
-        <div class="p-6 rounded-3xl bg-[#FFF8FA] border border-[#F7D5DF] card-shadow-hover space-y-3 text-left">
-          <div class="w-12 h-12 rounded-2xl bg-[#FFF0F4] text-[#E86B91] border border-[#F7D5DF] flex items-center justify-center font-bold text-xl shadow-sm">
-            🌿
+        <div class="p-6 rounded-3xl bg-white border border-[#F7D5DF] shadow-sm space-y-2 text-left">
+          <div class="w-10 h-10 rounded-full bg-[#FFF0F4] text-[#E86B91] flex items-center justify-center font-bold text-lg mb-3 border border-[#F7D5DF]">
+            🌸
           </div>
-          <h3 class="text-base font-extrabold text-gray-900 uppercase tracking-wide">
-            {{ section.settings.b3_title | default: '100% INDOLORO Y SEGURO' }}
+          <h3 class="text-sm font-extrabold text-gray-900 uppercase tracking-wider">
+            100% INDOLORO Y SEGURO
           </h3>
-          <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
-            {{ section.settings.b3_desc | default: 'Tecnología dermatológicamente probada, ideal para axilas, piernas, rostro y área de bikini sin quemaduras.' }}
+          <p class="text-xs text-gray-600 leading-relaxed">
+            Tecnología suave y probada dermatológicamente, ideal para axilas, piernas, rostro y área del bikini.
           </p>
         </div>
 
         <!-- Benefit 4 -->
-        <div class="p-6 rounded-3xl bg-[#FFF8FA] border border-[#F7D5DF] card-shadow-hover space-y-3 text-left">
-          <div class="w-12 h-12 rounded-2xl bg-[#FFF0F4] text-[#E86B91] border border-[#F7D5DF] flex items-center justify-center font-bold text-xl shadow-sm">
+        <div class="p-6 rounded-3xl bg-white border border-[#F7D5DF] shadow-sm space-y-2 text-left">
+          <div class="w-10 h-10 rounded-full bg-[#FFF0F4] text-[#E86B91] flex items-center justify-center font-bold text-lg mb-3 border border-[#F7D5DF]">
             ⏱️
           </div>
-          <h3 class="text-base font-extrabold text-gray-900 uppercase tracking-wide">
-            {{ section.settings.b4_title | default: 'RÁPIDO Y FÁCIL' }}
+          <h3 class="text-sm font-extrabold text-gray-900 uppercase tracking-wider">
+            RÁPIDO Y FÁCIL
           </h3>
-          <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
-            {{ section.settings.b4_desc | default: 'Trata todo tu cuerpo en menos de 20 minutos desde la comodidad y privacidad de tu habitación.' }}
+          <p class="text-xs text-gray-600 leading-relaxed">
+            Tratamiento de cuerpo completo en menos de 20 minutos desde la comodidad y total privacidad de tu casa.
           </p>
         </div>
       </div>
     </div>
 
     <!-- Bottom CTA Button -->
-    <div class="mt-14 text-center">
+    <div class="mt-12 text-center">
       <a
-        href="{{ section.settings.button_link | default: '/products/depiladora-ipl-pro' }}"
+        href="{{ section.settings.button_link | default: '/collections/all' }}"
         class="btn-primary px-10 py-4 text-xs font-bold uppercase tracking-wider bg-[#111111] hover:bg-[#333333] text-white rounded-full shadow-xl inline-flex items-center gap-2"
       >
-        <span>{{ section.settings.button_text | default: 'Obtener Mi ShinnySkin Ahora' }}</span>
+        <span>{{ section.settings.button_text | default: 'COMPRAR AHORA' }}</span>
         {% render 'icon-arrow-right', class: 'w-4 h-4' %}
       </a>
     </div>
@@ -121,99 +121,25 @@
     {
       "type": "text",
       "id": "tag",
-      "label": "Section Tag",
+      "label": "Tag",
       "default": "POR QUÉ ELEGIRNOS"
     },
     {
       "type": "text",
       "id": "heading",
       "label": "Heading",
-      "default": "Beneficios de ShinnySkin"
-    },
-    {
-      "type": "textarea",
-      "id": "subheading",
-      "label": "Subheading",
-      "default": "Diseñada con tecnología de grado clínico para que disfrutes de una depilación permanente sin dolor desde casa."
+      "default": "Beneficios de ShinnySkin®"
     },
     {
       "type": "image_picker",
       "id": "center_image",
-      "label": "Central Product Image"
-    },
-    {
-      "type": "header",
-      "content": "Benefit 1"
-    },
-    {
-      "type": "text",
-      "id": "b1_title",
-      "label": "Title",
-      "default": "AHORRO TOTAL"
-    },
-    {
-      "type": "textarea",
-      "id": "b1_desc",
-      "label": "Description",
-      "default": "Olvídate de pagar miles de dólares en costosas sesiones de clínicas láser. Una sola compra dura más de 10 años."
-    },
-    {
-      "type": "header",
-      "content": "Benefit 2"
-    },
-    {
-      "type": "text",
-      "id": "b2_title",
-      "label": "Title",
-      "default": "PIEL SUAVE SIEMPRE"
-    },
-    {
-      "type": "textarea",
-      "id": "b2_desc",
-      "label": "Description",
-      "default": "Reduce el crecimiento del vello corporal hasta en un 95% de forma visible y duradera sin irritación."
-    },
-    {
-      "type": "header",
-      "content": "Benefit 3"
-    },
-    {
-      "type": "text",
-      "id": "b3_title",
-      "label": "Title",
-      "default": "100% INDOLORO Y SEGURO"
-    },
-    {
-      "type": "textarea",
-      "id": "b3_desc",
-      "label": "Description",
-      "default": "Tecnología dermatológicamente probada, ideal para axilas, piernas, rostro y área de bikini sin quemaduras."
-    },
-    {
-      "type": "header",
-      "content": "Benefit 4"
-    },
-    {
-      "type": "text",
-      "id": "b4_title",
-      "label": "Title",
-      "default": "RÁPIDO Y FÁCIL"
-    },
-    {
-      "type": "textarea",
-      "id": "b4_desc",
-      "label": "Description",
-      "default": "Trata todo tu cuerpo en menos de 20 minutos desde la comodidad y privacidad de tu habitación."
-    },
-    {
-      "type": "header",
-      "content": "Button"
+      "label": "Center Handsets Image"
     },
     {
       "type": "text",
       "id": "button_text",
       "label": "Button Text",
-      "default": "Obtener Mi ShinnySkin Ahora"
+      "default": "COMPRAR AHORA"
     },
     {
       "type": "url",
